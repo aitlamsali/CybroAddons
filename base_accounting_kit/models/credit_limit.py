@@ -49,7 +49,24 @@ class ResPartner(models.Model):
         for rec in self:
             if not rec.id:
                 continue
-            rec.due_amount = rec.credit - rec.debit
+            confirmed_so = self.env["sale.order"].search(
+                [
+                    ("partner_id", "=", rec.id),
+                    ("state", "in", ["sale", "done"]),
+                    ("invoice_status", "!=", "invoiced"),
+                ]
+            ).mapped('amount_total')
+            sum_confirmed_so = sum(confirmed_so)
+
+            draft_invoice = self.env["account.move"].search(
+                [
+                    ("partner_id", "=", rec.id),
+                    ("state", "in", ["draft"]),
+                    ("move_type", "=", "out_invoice"),
+                ]
+            ).mapped('amount_total')
+            sum_draft_invoice = sum(draft_invoice)
+            rec.due_amount = rec.credit - rec.debit + sum_draft_invoice + sum_confirmed_so
 
     def _compute_enable_credit_limit(self):
         """ Check credit limit is enabled in account settings """
@@ -63,7 +80,7 @@ class ResPartner(models.Model):
     def constrains_warning_stage(self):
         if self.active_limit and self.enable_credit_limit:
             if self.warning_stage >= self.blocking_stage:
-                if self.blocking_stage > 0:
+                if self.blocking_stage > 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
                     raise UserError(_(
                         "Warning amount should be less than Blocking amount"))
 
@@ -81,7 +98,7 @@ class SaleOrder(models.Model):
         if self.partner_id.active_limit \
                 and self.partner_id.enable_credit_limit:
             if self.due_amount >= self.partner_id.blocking_stage:
-                if self.partner_id.blocking_stage != 0:
+                if self.partner_id.blocking_stage != 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
                     raise UserError(_(
                         "%s is in  Blocking Stage and "
                         "has a due amount of %s %s to pay") % (
@@ -122,7 +139,7 @@ class AccountMove(models.Model):
             if rec.partner_id.active_limit and rec.move_type in pay_type \
                     and rec.partner_id.enable_credit_limit:
                 if rec.due_amount >= rec.partner_id.blocking_stage:
-                    if rec.partner_id.blocking_stage != 0:
+                    if rec.partner_id.blocking_stage != 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
                         raise UserError(_(
                             "%s is in  Blocking Stage and "
                             "has a due amount of %s %s to pay") % (
