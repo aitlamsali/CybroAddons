@@ -38,8 +38,12 @@ class ResPartner(models.Model):
                                        "customer is crossed blocking amount."
                                        "Set its value to 0.00 to disable "
                                        "this feature")
-    due_amount = fields.Float(string="Total Sale",
-                              compute="compute_due_amount")
+    due_amount = fields.Float(string="Total Due", compute="compute_due_amount")
+    real_due_amount = fields.Float(string="Global Due", compute="compute_due_amount")
+    confirmed_so = fields.Float(string="Confirmed SO", compute="compute_due_amount")
+    draft_invoice = fields.Float(string="Draft Invoice", compute="compute_due_amount")
+    confirmed_invoice = fields.Float(string="Due Invoice", compute="compute_due_amount")
+    over_payment = fields.Float(string="Over Payment", compute="compute_due_amount")
     active_limit = fields.Boolean("Active Credit Limit", default=False)
 
     enable_credit_limit = fields.Boolean(string="Credit Limit Enabled",
@@ -57,6 +61,7 @@ class ResPartner(models.Model):
                 ]
             ).mapped('amount_total')
             sum_confirmed_so = sum(confirmed_so)
+            rec.confirmed_so = sum_confirmed_so
 
             draft_invoice = self.env["account.move"].search(
                 [
@@ -66,7 +71,25 @@ class ResPartner(models.Model):
                 ]
             ).mapped('amount_total')
             sum_draft_invoice = sum(draft_invoice)
+            rec.draft_invoice = sum_draft_invoice
+
+            confirm_invoice = self.env["account.move"].search(
+                [
+                    ("partner_id", "=", rec.id),
+                    ("state", "in", ["posted"]),
+                    ("move_type", "=", "out_invoice"),
+                ]
+            ).mapped('amount_total')
+            sum_confirm_invoice = sum(confirm_invoice)
+            rec.confirmed_invoice = sum_confirm_invoice
+
             rec.due_amount = rec.credit - rec.debit + sum_draft_invoice + sum_confirmed_so
+            payment_ids = self.env['account.payment'].search([
+                ('partner_id', '=', rec.id),
+                ('partner_type', '=', 'customer')
+            ])
+            total_amount = sum(payment_ids.filtered(lambda line : not line.reconciled_invoices_count).mapped('amount'))
+            rec.real_due_amount = sum_confirm_invoice + sum_draft_invoice +  sum_confirmed_so - total_amount
 
     def _compute_enable_credit_limit(self):
         """ Check credit limit is enabled in account settings """

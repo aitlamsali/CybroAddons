@@ -72,6 +72,7 @@
         'views/res_config_view.xml',
         'views/recurring_payments_view.xml',
         'views/account_followup.xml',
+        'views/partner_views.xml',
         'views/followup_report.xml',
         'wizard/asset_depreciation_confirmation_wizard_views.xml',
         'wizard/asset_modify_views.xml',

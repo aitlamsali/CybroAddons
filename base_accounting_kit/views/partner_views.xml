@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add "Asset Category" to supplier invoices -->
+    <record model="ir.ui.view" id="view_partner_tree_inherited">
+        <field name="name">res.partner.tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="after">
+                <field name="warning_stage" optional="show"/>
+                <field name="blocking_stage" optional="show"/>
+                <field name="active_limit" optional="show"/>
+                <field name="confirmed_so" optional="show"/>
+                <field name="draft_invoice" optional="show"/>
+                <field name="confirmed_invoice" optional="show"/>
+                <field name="real_due_amount" optional="show"/>
+                <field name="credit" optional="show"/>
+                <field name="debit" optional="show"/>
+                <field name="due_amount" optional="show" string="Due Amount"/>
+                <!--<field name="due_invoice" optional="show"/>-->
+                <!--<field name="due_invoice" optional="show"/>-->
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

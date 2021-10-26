@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//page[@name='accounting']" position="inside">
-                    <group string="Credit Limit" attrs="{'invisible':[('enable_credit_limit','=',False)]}">
+                    <group string="Credit Limit" attrs="{'invisible':[('enable_credit_limit','=',False)]}" groups="sales_team.group_sale_manager">
                         <group>
                             <field name="active_limit"/>
                             <field name="enable_credit_limit" invisible="1"/>
