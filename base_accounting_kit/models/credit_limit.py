@@ -115,19 +115,20 @@ class SaleOrder(models.Model):
     is_warning = fields.Boolean()
     due_amount = fields.Float(related='partner_id.due_amount')
 
-    def _action_confirm(self):
-        """To check the selected customers due amount is exceed than
-        blocking stage"""
-        if self.partner_id.active_limit \
-                and self.partner_id.enable_credit_limit:
-            if self.due_amount >= self.partner_id.blocking_stage:
-                if self.partner_id.blocking_stage != 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
-                    raise UserError(_(
-                        "%s is in  Blocking Stage and "
-                        "has a due amount of %s %s to pay") % (
-                                        self.partner_id.name, self.due_amount,
-                                        self.currency_id.symbol))
-        return super(SaleOrder, self)._action_confirm()
+    # Disable block user on confirm and post invoice
+    # def _action_confirm(self):
+    #     """To check the selected customers due amount is exceed than
+    #     blocking stage"""
+    #     if self.partner_id.active_limit \
+    #             and self.partner_id.enable_credit_limit:
+    #         if self.due_amount >= self.partner_id.blocking_stage:
+    #             if self.partner_id.blocking_stage != 0 : #and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
+    #                 raise UserError(_(
+    #                     "%s is in  Blocking Stage and "
+    #                     "has a due amount of %s %s to pay") % (
+    #                                     self.partner_id.name, self.due_amount,
+    #                                     self.currency_id.symbol))
+    #     return super(SaleOrder, self)._action_confirm()
 
     @api.onchange('partner_id')
     def check_due(self):
@@ -154,21 +155,22 @@ class AccountMove(models.Model):
     is_warning = fields.Boolean()
     due_amount = fields.Float(related='partner_id.due_amount')
 
-    def action_post(self):
-        """To check the selected customers due amount is exceed than
-        blocking stage"""
-        pay_type = ['out_invoice', 'out_refund', 'out_receipt']
-        for rec in self:
-            if rec.partner_id.active_limit and rec.move_type in pay_type \
-                    and rec.partner_id.enable_credit_limit:
-                if rec.due_amount >= rec.partner_id.blocking_stage:
-                    if rec.partner_id.blocking_stage != 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
-                        raise UserError(_(
-                            "%s is in  Blocking Stage and "
-                            "has a due amount of %s %s to pay") % (
-                                            rec.partner_id.name, rec.due_amount,
-                                            rec.currency_id.symbol))
-        return super(AccountMove, self).action_post()
+    # Disable block user on confirm and post invoice
+    # def action_post(self):
+    #     """To check the selected customers due amount is exceed than
+    #     blocking stage"""
+    #     pay_type = ['out_invoice', 'out_refund', 'out_receipt']
+    #     for rec in self:
+    #         if rec.partner_id.active_limit and rec.move_type in pay_type \
+    #                 and rec.partner_id.enable_credit_limit:
+    #             if rec.due_amount >= rec.partner_id.blocking_stage:
+    #                 if rec.partner_id.blocking_stage != 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
+    #                     raise UserError(_(
+    #                         "%s is in  Blocking Stage and "
+    #                         "has a due amount of %s %s to pay") % (
+    #                                         rec.partner_id.name, rec.due_amount,
+    #                                         rec.currency_id.symbol))
+    #     return super(AccountMove, self).action_post()
 
     @api.onchange('partner_id')
     def check_due(self):
