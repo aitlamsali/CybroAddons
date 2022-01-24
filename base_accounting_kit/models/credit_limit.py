@@ -116,19 +116,19 @@ class SaleOrder(models.Model):
     due_amount = fields.Float(related='partner_id.due_amount')
 
     # Disable block user on confirm and post invoice
-    # def _action_confirm(self):
-    #     """To check the selected customers due amount is exceed than
-    #     blocking stage"""
-    #     if self.partner_id.active_limit \
-    #             and self.partner_id.enable_credit_limit:
-    #         if self.due_amount >= self.partner_id.blocking_stage:
-    #             if self.partner_id.blocking_stage != 0 : #and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
-    #                 raise UserError(_(
-    #                     "%s is in  Blocking Stage and "
-    #                     "has a due amount of %s %s to pay") % (
-    #                                     self.partner_id.name, self.due_amount,
-    #                                     self.currency_id.symbol))
-    #     return super(SaleOrder, self)._action_confirm()
+    def _action_confirm(self):
+        """To check the selected customers due amount is exceed than
+        blocking stage"""
+        if self.partner_id.active_limit \
+                and self.partner_id.enable_credit_limit:
+            if self.due_amount >= self.partner_id.blocking_stage:
+                if self.partner_id.blocking_stage != 0 : #and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
+                    raise UserError(_(
+                        "%s is in  Blocking Stage and "
+                        "has a due amount of %s %s to pay") % (
+                                        self.partner_id.name, self.due_amount,
+                                        self.currency_id.symbol))
+        return super(SaleOrder, self)._action_confirm()
 
     @api.onchange('partner_id')
     def check_due(self):
