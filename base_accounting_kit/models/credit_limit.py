@@ -122,7 +122,7 @@ class SaleOrder(models.Model):
         if self.partner_id.active_limit \
                 and self.partner_id.enable_credit_limit:
             if self.due_amount >= self.partner_id.blocking_stage:
-                if self.partner_id.blocking_stage != 0 : #and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
+                if self.partner_id.blocking_stage != 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
                     raise UserError(_(
                         "%s is in  Blocking Stage and "
                         "has a due amount of %s %s to pay") % (
