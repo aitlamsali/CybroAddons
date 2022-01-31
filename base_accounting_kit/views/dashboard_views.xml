@@ -5,11 +5,11 @@
             <field name="tag">invoice_dashboard</field>
         </record>
 
-        <menuitem name="Dashboard" id="menu_accounting_dashboard"
+<!--        <menuitem name="Dashboard" id="menu_accounting_dashboard"
                   parent="account.menu_finance"
                   sequence="0"
                   groups="base.group_no_one"
-        />
+        />-->
                   <!-- action="action_account_invoice_report_all"
                        groups="account.group_account_manager"-->
 
