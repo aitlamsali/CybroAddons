@@ -39,7 +39,7 @@ class ResPartner(models.Model):
                                        "Set its value to 0.00 to disable "
                                        "this feature")
     due_amount = fields.Float(string="Total Due", compute="compute_due_amount")
-    real_due_amount = fields.Float(string="Global Due", compute="compute_due_amount")
+    real_due_amount = fields.Float(string="Global Due", compute="compute_due_amount", help="All due including confirmed SO")
     confirmed_so = fields.Float(string="Confirmed SO", compute="compute_due_amount")
     draft_invoice = fields.Float(string="Draft Invoice", compute="compute_due_amount")
     confirmed_invoice = fields.Float(string="Due Invoice", compute="compute_due_amount")
