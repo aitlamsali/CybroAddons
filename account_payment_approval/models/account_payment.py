@@ -51,8 +51,8 @@ class AccountPayment(models.Model):
         Currently Odoo allows payment posting only in draft stage.
         """
         validation = self._check_payment_approval()
-        if validation:
-            if self.state not in ('draft', 'approved'):
+        if validation : #and self.partner_id.is_in_account_customer:
+            if self.state not in ('draft', 'approved') and self.partner_id.is_in_account_customer:
                 raise UserError(_("Only a draft or approved payment can be posted."))
 
             if any(inv.state != 'posted' for inv in self.reconciled_invoice_ids):
@@ -61,25 +61,26 @@ class AccountPayment(models.Model):
 
     def _check_payment_approval(self):
         if self.state == "draft":
-            first_approval = self.env['ir.config_parameter'].sudo().get_param(
-                'account_payment_approval.payment_approval')
-            if first_approval:
-                amount = float(self.env['ir.config_parameter'].sudo().get_param(
-                    'account_payment_approval.approval_amount'))
-                payment_currency_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                    'account_payment_approval.approval_currency_id'))
-                payment_amount = self.amount
-                if payment_currency_id:
-                    if self.currency_id and self.currency_id.id != payment_currency_id:
-                        currency_id = self.env['res.currency'].browse(payment_currency_id)
-                        payment_amount = self.currency_id._convert(
-                            self.amount, currency_id, self.company_id,
-                            self.date or fields.Date.today(), round=True)
-                if payment_amount > amount:
-                    self.write({
-                        'state': 'waiting_approval'
-                    })
-                    return False
+            #if self.partner_id.is_in_account_customer :
+                first_approval = self.env['ir.config_parameter'].sudo().get_param(
+                    'account_payment_approval.payment_approval')
+                if first_approval:
+                    amount = float(self.env['ir.config_parameter'].sudo().get_param(
+                        'account_payment_approval.approval_amount'))
+                    payment_currency_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                        'account_payment_approval.approval_currency_id'))
+                    payment_amount = self.amount
+                    if payment_currency_id:
+                        if self.currency_id and self.currency_id.id != payment_currency_id:
+                            currency_id = self.env['res.currency'].browse(payment_currency_id)
+                            payment_amount = self.currency_id._convert(
+                                self.amount, currency_id, self.company_id,
+                                self.date or fields.Date.today(), round=True)
+                    if payment_amount > amount and self.partner_id.is_in_account_customer:
+                        self.write({
+                            'state': 'waiting_approval'
+                        })
+                        return False
         return True
 
     def approve_transfer(self):

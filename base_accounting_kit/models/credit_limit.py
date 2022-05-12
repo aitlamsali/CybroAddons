@@ -130,6 +130,28 @@ class SaleOrder(models.Model):
                                         self.currency_id.symbol))
         return super(SaleOrder, self)._action_confirm()
 
+    # Disable block user on create SO
+    # Need to add parameter, so we block on draft only if selected
+    # @api.model
+    # def create(self, vals):
+    #     """To check the selected customers due amount is exceed than
+    #     blocking stage on """
+    #     partner_id = self.env['res.partner'].search([('id', '=', vals.get("partner_id"))])
+    #     print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", partner_id, type(partner_id), type(vals.get("due_amount")),
+    #           partner_id.blocking_stage )
+    #     if partner_id.active_limit \
+    #             and partner_id.enable_credit_limit:
+    #         if partner_id.due_amount >= partner_id.blocking_stage:
+    #             if partner_id.blocking_stage != 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
+    #                 raise UserError(_(
+    #                     "%s is in  Blocking Stage and "
+    #                     "has a due amount of %s to pay") % (
+    #                                     partner_id.name, partner_id.due_amount
+    #                                     #vals.get("currency_id").symbol)
+    #                                 )
+    #                                 )
+    #     return super(SaleOrder, self).create(vals)
+
     @api.onchange('partner_id')
     def check_due(self):
         """To show the due amount and warning stage"""
