@@ -49,6 +49,15 @@ class ResPartner(models.Model):
     enable_credit_limit = fields.Boolean(string="Credit Limit Enabled",
                                          compute="_compute_enable_credit_limit")
 
+    authorized_balance = fields.Float(string="Auth Balance", compute="compute_authorized_balance")
+
+    def compute_authorized_balance(self):
+        for rec in self:
+            if not rec.id:
+                continue
+            rec.authorized_balance =  rec.blocking_stage - rec.credit
+
+
     def compute_due_amount(self):
         for rec in self:
             if not rec.id:
@@ -114,6 +123,7 @@ class SaleOrder(models.Model):
     has_due = fields.Boolean()
     is_warning = fields.Boolean()
     due_amount = fields.Float(related='partner_id.due_amount')
+    authorized_balance = fields.Float(related='partner_id.authorized_balance')
 
     # Disable block user on confirm and post invoice
     def _action_confirm(self):

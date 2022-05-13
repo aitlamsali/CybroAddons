@@ -16,6 +16,7 @@
 <!--            <field name="confirmed_invoice" optional="show"/>-->
                 <!--<field name="real_due_amount" optional="show"/>-->
                 <field name="credit" optional="show"/>
+                <field name="authorized_balance" optional="show"/>
                 <!--<field name="debit" optional="show"/>-->
                 <field name="due_amount" optional="show" string="Due Amount"/>
                 <!--<field name="due_invoice" optional="show"/>-->
