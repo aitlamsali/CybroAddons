@@ -35,14 +35,12 @@
                     </div>
                 </xpath>
                 <xpath expr="//sheet/div[@name='button_box']" position="after">
-                    <div role="alert" class="alert alert-danger" style="height: 40px; width: 350px; margin-bottom:0px;"
-                         attrs="{'invisible':[('is_warning','=',False)]}">
-                        This customer's <strong>warning limit</strong> has been crossed.
+                    <div role="alert" class="alert alert-danger" style="height: 40px; width: 650px; margin-bottom:0px;"> <!--role="alert" class="alert alert-danger" style="height: 40px; width: 350px; margin-bottom:0px;"
+                         attrs="{'invisible':[('is_warning','=',False)]}"-->
+                        <span attrs="{'invisible':[('is_warning','=',False)]}">Customer's <strong>warning limit</strong> has been crossed.</span>
+                        <span> - <strong> balance is !! <field name="authorized_balance"/></strong>.</span>
                     </div>
-                    >>
-                    <div role="alert" class="alert alert-danger" style="height: 40px; width: 350px; margin-bottom:0px;"> <!-- attrs="{'invisible':[('is_warning','=',False)]}"-->
-                        This customer's <strong> balance is !! <field name="authorized_balance"/></strong>.
-                    </div>
+                    <!--<div class="alert alert-warning" role="alert" style="height: 40px; width: 350px; margin-bottom:0px;">  attrs="{'invisible':[('is_warning','=',False)]}"-->
                 </xpath>
             </field>
         </record>
