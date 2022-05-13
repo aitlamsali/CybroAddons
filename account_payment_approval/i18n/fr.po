@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-12 12:01+0000\n"
-"PO-Revision-Date: 2022-05-13 12:22+0100\n"
+"PO-Revision-Date: 2022-05-13 16:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -58,7 +58,7 @@ msgstr "Convertit le montant du paiement dans cette devise si elle est choisie."
 #. module: account_payment_approval
 #: model_terms:ir.ui.view,arch_db:account_payment_approval.res_config_settings_view_form_inherit
 msgid "Currency"
-msgstr "Devise"
+msgstr "Devise:"
 
 #. module: account_payment_approval
 #: model:ir.model.fields,field_description:account_payment_approval.field_account_move__display_name
