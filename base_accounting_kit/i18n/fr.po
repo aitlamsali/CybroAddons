@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-12 14:13+0000\n"
-"PO-Revision-Date: 2022-04-12 14:20+0000\n"
+"PO-Revision-Date: 2022-05-13 16:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -52,13 +52,15 @@ msgstr "%s est en phase de blocage et a un montant dû de %s %s à payer"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid "07/08/2020"
-msgstr ""
+msgstr "07/08/2020"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid "08/07/2020"
-msgstr ""
+msgstr "08/07/2020"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_bank_book
@@ -99,60 +101,73 @@ msgstr "                                    <strong>A la date :</strong>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.background
+#, fuzzy
 msgid "<i class=\"fa fa-at\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-at\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_followup_followup_kanban
+#, fuzzy
 msgid "<i class=\"fa fa-building\" role=\"img\" aria-label=\"Enterprise\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-building\" role=\"img\" aria-label=\"Enterprise\"/>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.background
+#, fuzzy
 msgid "<i class=\"fa fa-building-o\" role=\"img\" aria-label=\"Fiscal number\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-building-o\" role=\"img\" aria-label=\"Fiscal number\"/>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.background
+#, fuzzy
 msgid "<i class=\"fa fa-globe\" role=\"img\" aria-label=\"Website\" title=\"Website\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-globe\" role=\"img\" aria-label=\"Website\" title=\"Website\"/>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.background
+#, fuzzy
 msgid "<i class=\"fa fa-phone\" role=\"img\" aria-label=\"Phone\" title=\"Phone\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-phone\" role=\"img\" aria-label=\"Phone\" title=\"Phone\"/>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid "<span class=\"text-nowrap\">$ 18,750.00</span>"
-msgstr ""
+msgstr "<span class=\"text-nowrap\">$ 18,750.00</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid ""
 "<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">\n"
 "                                                       143,750.00</span></span>"
 msgstr ""
+"<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">\n"
+"                                                       143,750.00</span></span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid "<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">117,500.00</span></span>"
-msgstr ""
+msgstr "<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">117,500.00</span></span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid "<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">7,500.00</span></span>"
-msgstr ""
+msgstr "<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">7,500.00</span></span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid "<span class=\"text-nowrap\">1,500.00</span>"
-msgstr ""
+msgstr "<span class=\"text-nowrap\">1,500.00</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid "<span class=\"text-nowrap\">23,500.00</span>"
-msgstr ""
+msgstr "<span class=\"text-nowrap\">23,500.00</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
@@ -179,23 +194,27 @@ msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid "<span id=\"line_tax_ids\">15.00%</span>"
-msgstr ""
+msgstr "<span id=\"line_tax_ids\">15.00%</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid "<span itemprop=\"name\">Deco Addict</span>"
-msgstr ""
+msgstr "<span itemprop=\"name\">Deco Addict</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid "<span>$ <span class=\"oe_currency_value\">125,000.00</span></span>"
-msgstr ""
+msgstr "<span>$ <span class=\"oe_currency_value\">125,000.00</span></span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
+#, fuzzy
 msgid "<span>5.000</span>"
-msgstr ""
+msgstr "<span>5.000</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
@@ -204,8 +223,9 @@ msgstr "<span>Montant</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_financial
+#, fuzzy
 msgid "<span>Comp</span>"
-msgstr ""
+msgstr "<span>Comp</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
@@ -251,7 +271,7 @@ msgstr ""
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
 msgid "<span>Taxes</span>"
-msgstr ""
+msgstr "<span>Taxes</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
@@ -358,7 +378,7 @@ msgstr "<strong>Entrées triées par:</strong>"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
 msgid "<strong>Incoterm: </strong>"
-msgstr ""
+msgstr "<strong>Incoterm: </strong>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
@@ -368,7 +388,7 @@ msgstr "<strong>Date de la facture :</strong>"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_journal_audit
 msgid "<strong>Journal:</strong>"
-msgstr ""
+msgstr "<strong>Journal:</strong>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.day_book_report_template model_terms:ir.ui.view,arch_db:base_accounting_kit.report_bank_book
@@ -622,7 +642,7 @@ msgstr "Action nécessaire"
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__active model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__active
 msgid "Active"
-msgstr ""
+msgstr "Active"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__active_limit model:ir.model.fields,field_description:base_accounting_kit.field_res_users__active_limit
@@ -1045,7 +1065,7 @@ msgstr "Encaisser"
 #: model:account.financial.report,name:base_accounting_kit.cash_out_financial1 model:account.financial.report,name:base_accounting_kit.cash_out_investing1
 #: model:account.financial.report,name:base_accounting_kit.cash_out_operation1
 msgid "Cash Out"
-msgstr ""
+msgstr "Cash Out"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__category_id model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_category_search
@@ -1155,7 +1175,7 @@ msgstr "Fermé"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_trial_balance
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__label_filter
@@ -1247,7 +1267,7 @@ msgstr "Félicitations : Vous avez terminé!"
 #. module: base_accounting_kit
 #: model:ir.model,name:base_accounting_kit.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #. module: base_accounting_kit
 #: model:account.financial.report,name:base_accounting_kit.financial_report_cost_of_revenue
@@ -1463,7 +1483,7 @@ msgstr "Date d'amortissement"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.cash_flow_report_view model_terms:ir.ui.view,arch_db:base_accounting_kit.financial_report_wiz_modified
 msgid "Dates"
-msgstr ""
+msgstr "Dates"
 
 #. module: base_accounting_kit
 #: model:ir.ui.menu,name:base_accounting_kit.account_day_book_menu
@@ -1604,7 +1624,7 @@ msgstr "Ligne d’amortissement comptabilisée."
 #: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0 model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments__description
 #, python-format
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.account_recurring_payments_form_view
@@ -1976,7 +1996,7 @@ msgstr "Le contenu du formulaire est manquant, le rapport ne peut pas être impr
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__view_format
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 #. module: base_accounting_kit
 #. openerp-web
@@ -2038,8 +2058,9 @@ msgstr "Donne l'ordre de séquence lors de l'affichage d'une liste de lignes de 
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__real_due_amount model:ir.model.fields,field_description:base_accounting_kit.field_res_users__real_due_amount
+#, fuzzy
 msgid "Global Due"
-msgstr ""
+msgstr "Global Due"
 
 #. module: base_accounting_kit
 #. openerp-web
@@ -2104,7 +2125,7 @@ msgstr "En-tête"
 #. module: base_accounting_kit
 #: model:ir.model.fields.selection,name:base_accounting_kit.selection__financial_report__view_format__horizontal
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_account__id model:ir.model.fields,field_description:base_accounting_kit.field_account_aged_trial_balance__id
@@ -2142,7 +2163,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_accounting_kit.field_res_company__id model:ir.model.fields,field_description:base_accounting_kit.field_res_config_settings__id
 #: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__id model:ir.model.fields,field_description:base_accounting_kit.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_accounting_kit
 #. openerp-web
@@ -2283,7 +2304,7 @@ msgstr "Éléments"
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_cash_book model_terms:ir.ui.view,arch_db:base_accounting_kit.report_general_ledger
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_partnerledger
 msgid "JRNL"
-msgstr ""
+msgstr "JRNL"
 
 #. module: base_accounting_kit
 #. openerp-web
@@ -2294,7 +2315,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_journal_audit
 #, python-format
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_bank_book_report__sortby__sort_journal_partner
@@ -2317,7 +2338,7 @@ msgstr "Pièce comptable"
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_line__move_name
 msgid "Journal Entry Name"
-msgstr ""
+msgstr "nom du journal de saisie"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_print_journal__sort_selection__move_name model_terms:ir.ui.view,arch_db:base_accounting_kit.report_journal_audit
@@ -2578,7 +2599,7 @@ msgstr "Verrouillez votre période fiscale"
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.background model_terms:ir.ui.view,arch_db:base_accounting_kit.boxed model_terms:ir.ui.view,arch_db:base_accounting_kit.clean
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.standard
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__message_main_attachment_id
@@ -2612,7 +2633,7 @@ msgstr "Erreur d'envoi du message"
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Messages"
 
 #. module: base_accounting_kit
 #. openerp-web
@@ -2646,8 +2667,9 @@ msgstr "Modifier les modèles"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.customer_statements_form_view
+#, fuzzy
 msgid "Module !"
-msgstr ""
+msgstr "Module !"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_search
@@ -2697,7 +2719,7 @@ msgstr "Nom"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_tax
 msgid "Net"
-msgstr ""
+msgstr "Net"
 
 #. module: base_accounting_kit
 #. openerp-web
@@ -2881,7 +2903,7 @@ msgstr "Factures en retard"
 #. module: base_accounting_kit
 #: model:account.payment.method,name:base_accounting_kit.account_payment_method_pdc_in model:account.payment.method,name:base_accounting_kit.account_payment_method_pdc_out
 msgid "PDC"
-msgstr ""
+msgstr "PDC"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.background
@@ -3133,7 +3155,7 @@ msgstr "Profit et perte"
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__prorata model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__prorata
 msgid "Prorata Temporis"
-msgstr ""
+msgstr "Prorata Temporis"
 
 #. module: base_accounting_kit
 #: code:addons/base_accounting_kit/models/account_asset.py:0
@@ -3560,6 +3582,8 @@ msgid ""
 "Technical field holding the number given to the journal entry, automatically set when the statement line is reconciled then stored to set the same number again if the line is cancelled, set to "
 "draft and re-processed again."
 msgstr ""
+"Champ technique contenant le numéro attribué à l'écriture de journal, renseigné automatiquement lorsque la ligne de relevé est lettrée puis il est stocké afin d'utiliser le même numéro si la ligne "
+"est annulée, modifiée à l'état \"Brouillon\" et retraitée à nouveau."
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.clean
@@ -3773,7 +3797,7 @@ msgstr "En haut à droite"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.customer_statements_tree_view model_terms:ir.ui.view,arch_db:base_accounting_kit.report_agedpartnerbalance
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_line__due_amount model:ir.model.fields,field_description:base_accounting_kit.field_account_move__due_amount
@@ -3807,7 +3831,7 @@ msgstr "Total en retard"
 #: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
 #, python-format
 msgid "Transaction"
-msgstr ""
+msgstr "Transaction"
 
 #. module: base_accounting_kit
 #: model:ir.actions.act_window,name:base_accounting_kit.action_account_balance_menu model:ir.actions.report,name:base_accounting_kit.action_report_trial_balance
@@ -3824,13 +3848,13 @@ msgstr "Rapport de balance de vérification"
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__type model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__type
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_financial_report__type model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_category_search
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #. module: base_accounting_kit
 #: code:addons/base_accounting_kit/report/report_aged_partner.py:0
 #, python-format
 msgid "Unknown Partner"
-msgstr ""
+msgstr "Partenaire inconnu"
 
 #. module: base_accounting_kit
 #. openerp-web
@@ -3905,7 +3929,7 @@ msgstr "Vérifier"
 #. module: base_accounting_kit
 #: model:ir.model.fields.selection,name:base_accounting_kit.selection__financial_report__view_format__vertical
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_financial_report__type__sum
@@ -4131,7 +4155,7 @@ msgstr "ont été réconciliés automatiquement"
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_entries_line__tmpl_id
 msgid "id"
-msgstr ""
+msgstr "id"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.asset_modify_form model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_category_form
@@ -4146,7 +4170,7 @@ msgstr "facture.multiple"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
 msgid "on"
-msgstr ""
+msgstr "on"
 
 #. module: base_accounting_kit
 #. openerp-web
