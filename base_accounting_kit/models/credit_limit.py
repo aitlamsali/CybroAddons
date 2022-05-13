@@ -55,7 +55,7 @@ class ResPartner(models.Model):
         for rec in self:
             if not rec.id:
                 continue
-            rec.authorized_balance =  rec.blocking_stage - rec.credit
+            rec.authorized_balance =  rec.blocking_stage - rec.due_amount
 
 
     def compute_due_amount(self):
@@ -121,7 +121,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     has_due = fields.Boolean()
-    is_warning = fields.Boolean()
+    is_warning = fields.Boolean(compute="_compute_has_due_is_warning")
     due_amount = fields.Float(related='partner_id.due_amount')
     authorized_balance = fields.Float(related='partner_id.authorized_balance')
 
@@ -171,13 +171,41 @@ class SaleOrder(models.Model):
             self.has_due = True
         else:
             self.has_due = False
-        if self.partner_id and self.partner_id.active_limit\
-                and self.partner_id.enable_credit_limit:
+        if self.partner_id and self.partner_id.active_limit and self.partner_id.enable_credit_limit:
+            #3 / 0
             if self.due_amount >= self.partner_id.warning_stage:
+                print("LLLLLLLLLL self.due_amount, self.partner_id.warning_stage", self.due_amount, self.partner_id.warning_stage)
                 if self.partner_id.warning_stage != 0:
                     self.is_warning = True
+                    print("LLLLLLLLLL self.is_warning,",  self.is_warning)
+
         else:
             self.is_warning = False
+
+
+
+    @api.depends('partner_id')
+    def _compute_has_due_is_warning(self):
+        # """To show the due amount and warning stage"""
+        # if self.partner_id and self.partner_id.due_amount > 0 \
+        #         and self.partner_id.active_limit \
+        #         and self.partner_id.enable_credit_limit:
+        #     self.has_due = True
+        # else:
+        #     self.has_due = False
+        self.is_warning = False
+        if self.partner_id and self.partner_id.active_limit and self.partner_id.enable_credit_limit:
+            #3 / 0
+            if self.due_amount >= self.partner_id.warning_stage:
+                print("LLLLLLLLLL self.due_amount, self.partner_id.warning_stage", self.due_amount, self.partner_id.warning_stage)
+                if self.partner_id.warning_stage != 0:
+                    self.is_warning = True
+                    print("LLLLLLLLLL self.is_warning,",  self.is_warning)
+                else:
+                    self.is_warning = False
+        else:
+            self.is_warning = False
+
 
 
 class AccountMove(models.Model):

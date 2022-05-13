@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-12 14:13+0000\n"
-"PO-Revision-Date: 2022-05-13 16:16+0100\n"
+"POT-Creation-Date: 2022-05-13 22:29+0000\n"
+"PO-Revision-Date: 2022-05-13 23:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -49,6 +49,11 @@ msgstr "# de Lignes de Versement"
 #, python-format
 msgid "%s is in  Blocking Stage and has a due amount of %s %s to pay"
 msgstr "%s est en phase de blocage et a un montant dû de %s %s à payer"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.header_view
+msgid ".Balance is:"
+msgstr "Le solde est :"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
@@ -128,6 +133,12 @@ msgstr "<i class=\"fa fa-globe\" role=\"img\" aria-label=\"Website\" title=\"Web
 #, fuzzy
 msgid "<i class=\"fa fa-phone\" role=\"img\" aria-label=\"Phone\" title=\"Phone\"/>"
 msgstr "<i class=\"fa fa-phone\" role=\"img\" aria-label=\"Phone\" title=\"Phone\"/>"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.header_view
+#, fuzzy
+msgid "<span attrs=\"{'invisible':[('is_warning','=',False)]}\">Customer's <strong>warning limit</strong> has been crossed.</span>"
+msgstr "<span attrs=\"{'invisible':[('is_warning','=',False)]}\">La <strong>limite d'alerte</strong> du client a été franchie.</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
@@ -493,7 +504,7 @@ msgstr "Rapport de balance de vérification âgée du compte"
 #: model:ir.actions.server,name:base_accounting_kit.account_asset_cron_ir_actions_server model:ir.cron,cron_name:base_accounting_kit.account_asset_cron
 #: model:ir.cron,name:base_accounting_kit.account_asset_cron
 msgid "Account Asset: Generate asset entries"
-msgstr "Actif du compte: générer des entrées d'Immo"
+msgstr "Actif du compte: générer des entrées d'actif"
 
 #. module: base_accounting_kit
 #: model:ir.model,name:base_accounting_kit.model_account_bank_book_report
@@ -591,12 +602,12 @@ msgstr "Compte utilisé dans les écritures d'amortissement, pour diminuer la va
 #. module: base_accounting_kit
 #: model:ir.model.fields,help:base_accounting_kit.field_account_asset_category__account_depreciation_expense_id
 msgid "Account used in the periodical entries, to record a part of the asset as expense."
-msgstr "Compte utilisé dans les écritures périodiques, pour enregistrer une partie de l'immo en tant que dépense."
+msgstr "Compte utilisé dans les écritures périodiques, pour enregistrer une partie de l'actif en tant que dépense."
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,help:base_accounting_kit.field_account_asset_category__account_asset_id
 msgid "Account used to record the purchase of the asset at its original price."
-msgstr "Compte utilisé pour enregistrer l'achat de l'immo à son prix d'origine."
+msgstr "Compte utilisé pour enregistrer l'achat de l'actif à son prix d'origine."
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.res_config_settings_view_accounting_kit
@@ -729,6 +740,11 @@ msgid "All accounts'"
 msgstr "Tous les comptes"
 
 #. module: base_accounting_kit
+#: model:ir.model.fields,help:base_accounting_kit.field_res_partner__real_due_amount model:ir.model.fields,help:base_accounting_kit.field_res_users__real_due_amount
+msgid "All due including confirmed SO"
+msgstr "Tout ce qui est dû, y compris les bons en cours"
+
+#. module: base_accounting_kit
 #. openerp-web
 #: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
 #, python-format
@@ -779,28 +795,28 @@ msgstr "Balises analytiques."
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_asset_report__asset_id model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_asset_form
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_search model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_asset_report_search
 msgid "Asset"
-msgstr "Immo"
+msgstr "Atout"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__account_asset_id model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_search
 msgid "Asset Account"
-msgstr "Compte d'Immo"
+msgstr "Compte d'actifs"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_move_line__asset_category_id model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_asset_report_search
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_invoice_asset_category
 msgid "Asset Category"
-msgstr "Catégorie d'Immo"
+msgstr "Catégorie d'actif"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.asset_modify_form
 msgid "Asset Durations to Modify"
-msgstr "Durées des Immo à modifier"
+msgstr "Durées des actifs à modifier"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_move_line__asset_end_date
 msgid "Asset End Date"
-msgstr "Date de fin de l'Immo"
+msgstr "Date de fin de l'actif"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__asset_method_time
@@ -821,29 +837,29 @@ msgstr "Date de début de l'élément"
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__name model:ir.model.fields,field_description:base_accounting_kit.field_product_product__asset_category_id
 #: model:ir.model.fields,field_description:base_accounting_kit.field_product_template__asset_category_id model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_category_form
 msgid "Asset Type"
-msgstr "Type d'Immo"
+msgstr "Type d'actif"
 
 #. module: base_accounting_kit
 #: model:ir.actions.act_window,name:base_accounting_kit.action_account_asset_asset_list_normal_purchase model:ir.ui.menu,name:base_accounting_kit.menu_action_account_asset_asset_list_normal_purchase
 msgid "Asset Types"
-msgstr "Types d'Immo"
+msgstr "Types d'actifs"
 
 #. module: base_accounting_kit
 #: model:ir.model,name:base_accounting_kit.model_account_asset_category model:ir.model.fields,field_description:base_accounting_kit.field_asset_asset_report__asset_category_id
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_category_form model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_category_tree
 msgid "Asset category"
-msgstr "Catégorie d'Immo"
+msgstr "Catégorie d'actif"
 
 #. module: base_accounting_kit
 #: code:addons/base_accounting_kit/models/account_asset.py:0
 #, python-format
 msgid "Asset created"
-msgstr "Immo créé"
+msgstr "Actif créé"
 
 #. module: base_accounting_kit
 #: model:ir.model,name:base_accounting_kit.model_account_asset_depreciation_line
 msgid "Asset depreciation line"
-msgstr "Ligne d'amortissement des Immo"
+msgstr "Ligne d'amortissement des actifs"
 
 #. module: base_accounting_kit
 #: code:addons/base_accounting_kit/models/account_asset.py:0
@@ -861,21 +877,21 @@ msgstr "Reconnaissance des actifs / revenus"
 #: model:ir.ui.menu,name:base_accounting_kit.menu_action_account_asset_asset_form model:ir.ui.menu,name:base_accounting_kit.menu_action_asset_asset_report
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_asset_purchase_tree model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_category_search
 msgid "Assets"
-msgstr "Les Immo"
+msgstr "Les atouts"
 
 #. module: base_accounting_kit
 #: model:ir.actions.act_window,name:base_accounting_kit.action_asset_asset_report model:ir.model,name:base_accounting_kit.model_asset_asset_report
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.action_account_asset_report_graph model_terms:ir.ui.view,arch_db:base_accounting_kit.action_account_asset_report_pivot
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_asset_report_search
 msgid "Assets Analysis"
-msgstr "Analyse des Immo"
+msgstr "Analyse des actifs"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_line__asset_depreciation_ids
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_move__asset_depreciation_ids
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_payment__asset_depreciation_ids
 msgid "Assets Depreciation Lines"
-msgstr "Lignes d'amortissement des Immo"
+msgstr "Lignes d'amortissement des actifs"
 
 #. module: base_accounting_kit
 #: model:ir.ui.menu,name:base_accounting_kit.menu_finance_config_assets
@@ -885,22 +901,22 @@ msgstr "Actifs et revenus"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_search
 msgid "Assets in closed state"
-msgstr "Immo à l'état fermé"
+msgstr "Actifs à l'état fermé"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_search
 msgid "Assets in draft and open states"
-msgstr "Immo à l'état brouillon et ouvert"
+msgstr "Actifs à l'état brouillon et ouvert"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_asset_report_search
 msgid "Assets in draft state"
-msgstr "Immo à l'état de brouillon"
+msgstr "Actifs à l'état de brouillon"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_asset_report_search
 msgid "Assets in running state"
-msgstr "Immo en état de fonctionnement"
+msgstr "Actifs en état de fonctionnement"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__message_attachment_count
@@ -911,6 +927,12 @@ msgstr "Nombre de pièces jointes"
 #: model:ir.ui.menu,name:base_accounting_kit.account_reports_audit
 msgid "Audit Reports"
 msgstr "Rapports d'audit"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__authorized_balance model:ir.model.fields,field_description:base_accounting_kit.field_res_users__authorized_balance
+#: model:ir.model.fields,field_description:base_accounting_kit.field_sale_order__authorized_balance
+msgid "Auth Balance"
+msgstr "Solde"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_category__open_asset
@@ -942,6 +964,11 @@ msgstr "Équilibre"
 #: model:ir.ui.menu,name:base_accounting_kit._account_financial_reports_balance_sheet
 msgid "Balance Sheet"
 msgstr "Bilan"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.header_view
+msgid "Balance is:"
+msgstr "Solde"
 
 #. module: base_accounting_kit
 #: model:ir.ui.menu,name:base_accounting_kit.account_bank_book_menu
@@ -1076,7 +1103,7 @@ msgstr "Catégorie"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_asset_form
 msgid "Category of asset"
-msgstr "Catégorie d'Immo"
+msgstr "Catégorie d'actif"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_journal__text_align__center
@@ -1100,7 +1127,7 @@ msgstr "Vérifiez que vous n'avez pas de lignes de relevé bancaire à"
 #. module: base_accounting_kit
 #: model:ir.model.fields,help:base_accounting_kit.field_account_asset_category__open_asset
 msgid "Check this if you want to automatically confirm the assets of this category when created by invoices."
-msgstr "Cochez cette case si vous voulez confirmer automatiquement les Immo de cette catégorie lorsqu'ils sont créés par des factures."
+msgstr "Cochez cette case si vous voulez confirmer automatiquement les actifs de cette catégorie lorsqu'ils sont créés par des factures."
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,help:base_accounting_kit.field_account_asset_category__group_entries
@@ -1225,7 +1252,7 @@ msgstr "Méthode de calcule"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_depreciation_confirmation_wizard
 msgid "Compute Asset"
-msgstr "Calculer l'Immo"
+msgstr "Calculer l'actif"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_asset_form
@@ -1292,7 +1319,7 @@ msgstr "Créer un modèle"
 #: code:addons/base_accounting_kit/wizard/asset_depreciation_confirmation_wizard.py:0
 #, python-format
 msgid "Created Asset Moves"
-msgstr "Mouvements crées de l'Immo"
+msgstr "Mouvements crées de l'actif"
 
 #. module: base_accounting_kit
 #: code:addons/base_accounting_kit/wizard/asset_depreciation_confirmation_wizard.py:0
@@ -1468,12 +1495,12 @@ msgstr "Date début"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_asset_form
 msgid "Date of asset"
-msgstr "Date de l'Immo"
+msgstr "Date de l'actif"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_asset_report_search
 msgid "Date of asset purchase"
-msgstr "Date achat de l'Immo"
+msgstr "Date achat de l'actif"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_asset_report_search
@@ -1648,7 +1675,7 @@ msgstr "Afficher les comptes"
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__debit_credit model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__debit_credit
 msgid "Display Debit/Credit Columns"
-msgstr "Afficher les colonnes de Débit/Crédit"
+msgstr "Afficher les colonnes de débit/crédit"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_account__display_name
@@ -2028,7 +2055,7 @@ msgstr "État du grand livre"
 #. module: base_accounting_kit
 #: model:ir.ui.menu,name:base_accounting_kit.menu_asset_depreciation_confirmation_wizard
 msgid "Generate Assets Entries"
-msgstr "Générer des entrées d'Immo"
+msgstr "Générer des entrées d'actifs"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_depreciation_confirmation_wizard
@@ -2094,7 +2121,7 @@ msgstr "Valeur brute"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_asset_form
 msgid "Gross value of asset"
-msgstr "Valeur brute de l'Immo"
+msgstr "Valeur brute de l'actif"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_financial_report_search model_terms:ir.ui.view,arch_db:base_accounting_kit.view_asset_asset_report_search
@@ -2236,7 +2263,7 @@ msgstr "Indique que la première entrée d'amortissement pour cet actif doit êt
 #. module: base_accounting_kit
 #: model:ir.model.fields,help:base_accounting_kit.field_account_asset_category__prorata
 msgid "Indicates that the first depreciation entry for this asset have to be done from the purchase date instead of the first of January"
-msgstr "Indique que la première entrée d'amortissement pour cet Immo doit être effectuée à partir de la date d'achat au lieu du premier janvier"
+msgstr "Indique que la première entrée d'amortissement pour cet actif doit être effectuée à partir de la date d'achat au lieu du premier janvier"
 
 #. module: base_accounting_kit
 #: model:account.financial.report,name:base_accounting_kit.account_financial_report_investing_activity0
@@ -2271,7 +2298,7 @@ msgstr "Est un abonné"
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_line__is_warning model:ir.model.fields,field_description:base_accounting_kit.field_account_move__is_warning
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_payment__is_warning model:ir.model.fields,field_description:base_accounting_kit.field_sale_order__is_warning
 msgid "Is Warning"
-msgstr "Montant de l'avertissement"
+msgstr "C'est un avertissement"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,help:base_accounting_kit.field_account_report_partner_ledger__amount_currency
@@ -2640,7 +2667,7 @@ msgstr "Messages"
 #: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
 #, python-format
 msgid "Miscellaneous Matching"
-msgstr "Correspondance diverses"
+msgstr "Appariement divers"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.asset_modify_form
@@ -3176,7 +3203,7 @@ msgstr "Mois d'achat"
 #. module: base_accounting_kit
 #: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_asset_category__type__purchase
 msgid "Purchase: Asset"
-msgstr "Achat: Immo"
+msgstr "Achat: actif"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__name
@@ -3377,7 +3404,7 @@ msgstr "Enregistrer et nouveau"
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_category_search
 msgid "Search Asset Category"
-msgstr "Rechercher une catégorie d'Immo"
+msgstr "Rechercher une catégorie d'actif"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_followup_filter
@@ -3492,7 +3519,7 @@ msgstr "Indiquez ici le temps entre 2 amortissements, en mois"
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_depreciation_line__parent_state
 msgid "State of Asset"
-msgstr "État de l'Immo"
+msgstr "État de l'actif"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__state model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments__state
@@ -3683,7 +3710,7 @@ msgid "This Year"
 msgstr "Cette année"
 
 #. module: base_accounting_kit
-#: model_terms:ir.ui.view,arch_db:base_accounting_kit.account_move_form_inherited model_terms:ir.ui.view,arch_db:base_accounting_kit.header_view
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.account_move_form_inherited
 msgid "This customer's <strong>warning limit</strong> has been crossed."
 msgstr "Ce client <strong>limite d'avertissement</strong> a été traversé."
 
@@ -3724,9 +3751,8 @@ msgid ""
 "This wizard will post installment/depreciation lines for the selected month.<br/>\n"
 "                        This will generate journal entries for all related installment lines on this period of asset/revenue recognition as well."
 msgstr ""
-"Cet assistant comptabilisera les lignes de versement/amortissement pour le mois sélectionné<br/>\n"
-"                        Cela générera des écritures de journal pour toutes les lignes d'acomptes provisionnels liées à cette période\n"
-"                        de la comptabilisation des Immos/revenus."
+"Cet assistant comptabilisera les lignes de versements/amortissements pour le mois sélectionné<br/>\n"
+"                        Cela générera également des écritures de journal pour toutes les lignes de versement liées à cette période de comptabilisation des actifs/revenus."
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__method_time
@@ -4123,7 +4149,7 @@ msgstr "et suivi des clients"
 #. module: base_accounting_kit
 #: model:ir.model,name:base_accounting_kit.model_asset_depreciation_confirmation_wizard
 msgid "asset.depreciation.confirmation.wizard"
-msgstr "assistant.de.confirmation.d'amortissement.d'Immo"
+msgstr "assistant.de.confirmation.d'amortissement.d'actifs"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_followup_followup_line_form
