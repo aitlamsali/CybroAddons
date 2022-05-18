@@ -129,6 +129,7 @@ class SaleOrder(models.Model):
     def _action_confirm(self):
         """To check the selected customers due amount is exceed than
         blocking stage"""
+        print("/dddddddddddddddddddd", self)
         if self.partner_id.active_limit \
                 and self.partner_id.enable_credit_limit:
             if self.due_amount >= self.partner_id.blocking_stage:
