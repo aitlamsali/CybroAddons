@@ -26,29 +26,6 @@
             </field>
         </record>
 
-<!--        <record id="view_account_payment_register_form_inherit" model="ir.ui.view">
-            <field name="name">account.payment.register.form</field>
-            <field name="model">account.payment.register</field>
-            <field name="inherit_id" ref="account.view_account_payment_register_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//button[@name='action_create_payments']" position="attributes">
-                    <attribute name="groups">account.group_account_manager</attribute>
-                </xpath>
-            </field>
-        </record>-->
-
-<!--        <record id="view_move_form_inherited_hide_payment_in_account" model="ir.ui.view">
-            <field name="name">account.move.form</field>
-            <field name="model">account.move</field>
-            <field name="inherit_id" ref="account.view_move_form" />
-            <field name="arch" type="xml">
-                <xpath expr="//button[@name='%(stock.action_report_delivery)d']" position="attributes">
-                    <attribute name="attrs">{'invisible': ['|', ('state', '!=', 'done')]}</attribute>
-                </xpath>
-            </field>
-        </record>-->
-
-
         <record id="view_account_payment_search_inherit" model="ir.ui.view">
             <field name="name">account.payment.search.inherit</field>
             <field name="model">account.payment</field>

@@ -3,7 +3,7 @@
 #
 #    Cybrosys Technologies Pvt. Ltd.
 #
-#    Copyright (C) 2019-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
+#    Copyright (C) 2021-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
 #    Author: Cybrosys Techno Solutions(<https://www.cybrosys.com>)
 #
 #    You can modify it under the terms of the GNU LESSER
@@ -26,16 +26,23 @@ from odoo.exceptions import UserError, ValidationError
 
 class AccountMove(models.Model):
     _inherit = "account.move"
-    state = fields.Selection(selection_add=[('waiting_approval', 'Waiting For Approval'),
-                                            ('approved', 'Approved'),
-                                            ('rejected', 'Rejected')],
-                             ondelete={'waiting_approval': 'set default', 'approved': 'set default',
-                                       'rejected': 'set default'})
+
+    state = fields.Selection(
+        selection_add=[('waiting_approval', 'Waiting For Approval'),
+                       ('approved', 'Approved'),
+                       ('rejected', 'Rejected')],
+        ondelete={'waiting_approval': 'set default', 'approved': 'set default', 'rejected': 'set default'})
 
 
 class AccountPayment(models.Model):
     _inherit = "account.payment"
     _inherits = {'account.move': 'move_id'}
+
+    invoices_list_ids = fields.Many2many(
+        'account.move',
+        'account_payment_approval_invoice_rel',
+        string='Invoice List',
+    )
 
     def _check_is_approver(self):
         approval = self.env['ir.config_parameter'].sudo().get_param(
@@ -50,18 +57,22 @@ class AccountPayment(models.Model):
         """Overwrites the _post() to validate the payment in the 'approved' stage too.
         Currently Odoo allows payment posting only in draft stage.
         """
+        if not self:
+            return False
         validation = self._check_payment_approval()
-        if validation : #and self.partner_id.is_in_account_customer:
-            if self.state not in ('draft', 'approved') and self.partner_id.is_in_account_customer:
-                raise UserError(_("Only a draft or approved payment can be posted."))
+        if validation:
+            if self.state not in ('draft', 'approved'):
+                raise UserError(
+                    _("Only a draft or approved payment can be posted."))
 
             if any(inv.state != 'posted' for inv in self.reconciled_invoice_ids):
-                raise ValidationError(_("The payment cannot be processed because the invoice is not open!"))
+                raise ValidationError(
+                    _("The payment cannot be processed because the invoice is not open!"))
             self.move_id._post(soft=False)
 
     def _check_payment_approval(self):
-        if self.state == "draft":
-            #if self.partner_id.is_in_account_customer :
+        for rec in self:
+            if rec.state == "draft":
                 first_approval = self.env['ir.config_parameter'].sudo().get_param(
                     'account_payment_approval.payment_approval')
                 if first_approval:
@@ -69,15 +80,16 @@ class AccountPayment(models.Model):
                         'account_payment_approval.approval_amount'))
                     payment_currency_id = int(self.env['ir.config_parameter'].sudo().get_param(
                         'account_payment_approval.approval_currency_id'))
-                    payment_amount = self.amount
+                    payment_amount = rec.amount
                     if payment_currency_id:
-                        if self.currency_id and self.currency_id.id != payment_currency_id:
-                            currency_id = self.env['res.currency'].browse(payment_currency_id)
-                            payment_amount = self.currency_id._convert(
-                                self.amount, currency_id, self.company_id,
-                                self.date or fields.Date.today(), round=True)
-                    if payment_amount > amount and self.partner_id.is_in_account_customer:
-                        self.write({
+                        if rec.currency_id and rec.currency_id.id != payment_currency_id:
+                            currency_id = self.env['res.currency'].browse(
+                                payment_currency_id)
+                            payment_amount = rec.currency_id._convert(
+                                rec.amount, currency_id, rec.company_id,
+                                rec.date or fields.Date.today(), round=True)
+                    if payment_amount > amount:
+                        rec.write({
                             'state': 'waiting_approval'
                         })
                         return False
@@ -88,8 +100,29 @@ class AccountPayment(models.Model):
             self.write({
                 'state': 'approved'
             })
+            self.payment_id.action_post()
+            for payment in self:
+                if payment.invoices_list_ids:
+                    debit_line = payment.line_ids.filtered(lambda l: l.account_id.internal_type == 'receivable')
+                    payment.invoices_list_ids.js_assign_outstanding_line(debit_line.ids)
 
     def reject_transfer(self):
         self.write({
             'state': 'rejected'
         })
+
+
+class AccountPaymentRegister(models.TransientModel):
+    _inherit = 'account.payment.register'
+
+    def _create_payments(self):
+        payments = super()._create_payments()
+        count = 0
+        if self._context.get('active_model') == 'account.move' and payments:
+            for payment in payments:
+                payment.write({"invoices_list_ids": [
+                              (6, 0, [self._context.get("active_ids")[count]]
+                                )]})
+                count += 1
+
+        return payments

@@ -3,7 +3,7 @@
 #
 #    Cybrosys Technologies Pvt. Ltd.
 #
-#    Copyright (C) 2019-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
+#    Copyright (C) 2021-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
 #    Author: Cybrosys Techno Solutions(<https://www.cybrosys.com>)
 #
 #    You can modify it under the terms of the GNU LESSER
@@ -22,7 +22,7 @@
 
 {
     'name': 'Payment Approvals',
-    'version': '14.0.1.0.0',
+    'version': '15.0.1.0.0',
     'category': 'Accounting',
     'summary': """ This modules enables approval feature in the payment.""",
     'description': """This modules enables approval feature in the payment. """,
@@ -41,4 +41,3 @@
     'auto_install': False,
     'application': True,
 }
-

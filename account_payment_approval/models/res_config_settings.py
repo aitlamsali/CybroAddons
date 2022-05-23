@@ -3,7 +3,7 @@
 #
 #    Cybrosys Technologies Pvt. Ltd.
 #
-#    Copyright (C) 2019-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
+#    Copyright (C) 2021-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
 #    Author: Cybrosys Techno Solutions(<https://www.cybrosys.com>)
 #
 #    You can modify it under the terms of the GNU LESSER
@@ -35,8 +35,9 @@ class ResConfigSettings(models.TransientModel):
     approval_user_id = fields.Many2one('res.users', string="Payment Approver", required=False,
                                        domain=_get_account_manager_ids,
                                        config_parameter='account_payment_approval.approval_user_id')
-    approval_amount = fields.Float('Minimum Approval Amount', config_parameter='account_payment_approval.approval_amount',
-                                   help="If amount is 0.00, All the payments go through approval.")
+    approval_amount = fields.Float(
+        'Minimum Approval Amount', config_parameter='account_payment_approval.approval_amount',
+        help="If amount is 0.00, All the payments go through approval.")
     approval_currency_id = fields.Many2one('res.currency', string='Approval Currency',
                                            config_parameter='account_payment_approval.approval_currency_id',
                                            help="Converts the payment amount to this currency if chosen.")
