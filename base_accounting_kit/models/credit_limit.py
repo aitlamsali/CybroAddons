@@ -62,7 +62,7 @@ class ResPartner(models.Model):
         for rec in self:
             if not rec.id:
                 continue
-            confirmed_so = self.env["sale.order"].search(
+            confirmed_so = self.env["sale.order"].sudo().search(
                 [
                     ("partner_id", "=", rec.id),
                     ("state", "in", ["sale", "done"]),
@@ -72,7 +72,7 @@ class ResPartner(models.Model):
             sum_confirmed_so = sum(confirmed_so)
             rec.confirmed_so = sum_confirmed_so
 
-            draft_invoice = self.env["account.move"].search(
+            draft_invoice = self.env["account.move"].sudo().search(
                 [
                     ("partner_id", "=", rec.id),
                     ("state", "in", ["draft"]),
@@ -82,7 +82,7 @@ class ResPartner(models.Model):
             sum_draft_invoice = sum(draft_invoice)
             rec.draft_invoice = sum_draft_invoice
 
-            confirm_invoice = self.env["account.move"].search(
+            confirm_invoice = self.env["account.move"].sudo().search(
                 [
                     ("partner_id", "=", rec.id),
                     ("state", "in", ["posted"]),
@@ -93,7 +93,7 @@ class ResPartner(models.Model):
             rec.confirmed_invoice = sum_confirm_invoice
 
             rec.due_amount = rec.credit - rec.debit + sum_draft_invoice + sum_confirmed_so
-            payment_ids = self.env['account.payment'].search([
+            payment_ids = self.env['account.payment'].sudo().search([
                 ('partner_id', '=', rec.id),
                 ('partner_type', '=', 'customer')
             ])
@@ -121,7 +121,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     has_due = fields.Boolean()
-    is_warning = fields.Boolean(compute="_compute_has_due_is_warning")
+    is_warning = fields.Boolean()
     due_amount = fields.Float(related='partner_id.due_amount')
     authorized_balance = fields.Float(related='partner_id.authorized_balance')
 
@@ -165,6 +165,8 @@ class SaleOrder(models.Model):
 
     @api.onchange('partner_id')
     def check_due(self):
+        self.is_warning = False
+        self.has_due = False
         """To show the due amount and warning stage"""
         if self.partner_id and self.partner_id.due_amount > 0 \
                 and self.partner_id.active_limit \
@@ -172,41 +174,13 @@ class SaleOrder(models.Model):
             self.has_due = True
         else:
             self.has_due = False
-        if self.partner_id and self.partner_id.active_limit and self.partner_id.enable_credit_limit:
-            #3 / 0
+        if self.partner_id and self.partner_id.active_limit\
+                and self.partner_id.enable_credit_limit:
             if self.due_amount >= self.partner_id.warning_stage:
-                print("LLLLLLLLLL self.due_amount, self.partner_id.warning_stage", self.due_amount, self.partner_id.warning_stage)
                 if self.partner_id.warning_stage != 0:
                     self.is_warning = True
-                    print("LLLLLLLLLL self.is_warning,",  self.is_warning)
-
         else:
             self.is_warning = False
-
-
-
-    @api.depends('partner_id')
-    def _compute_has_due_is_warning(self):
-        # """To show the due amount and warning stage"""
-        # if self.partner_id and self.partner_id.due_amount > 0 \
-        #         and self.partner_id.active_limit \
-        #         and self.partner_id.enable_credit_limit:
-        #     self.has_due = True
-        # else:
-        #     self.has_due = False
-        self.is_warning = False
-        if self.partner_id and self.partner_id.active_limit and self.partner_id.enable_credit_limit:
-            #3 / 0
-            if self.due_amount >= self.partner_id.warning_stage:
-                print("LLLLLLLLLL self.due_amount, self.partner_id.warning_stage", self.due_amount, self.partner_id.warning_stage)
-                if self.partner_id.warning_stage != 0:
-                    self.is_warning = True
-                    print("LLLLLLLLLL self.is_warning,",  self.is_warning)
-                else:
-                    self.is_warning = False
-        else:
-            self.is_warning = False
-
 
 
 class AccountMove(models.Model):
