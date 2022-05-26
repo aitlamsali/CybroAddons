@@ -22,6 +22,8 @@
                 </xpath>
                 <field name="partner_id" position="after">
                     <field name="is_approver" invisible="1"/>
+                    <field name="available_partner_bank_ids" invisible="1"/>
+
                 </field>
             </field>
         </record>
