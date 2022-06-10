@@ -60,17 +60,20 @@ class AccountPayment(models.Model):
         if not self:
             return False
         validation = self._check_payment_approval()
-        if validation:
-            if self.state not in ('draft', 'approved'):
-                raise UserError(
-                    _("Only a draft or approved payment can be posted."))
+        for rec in self:
+            print("/2222222222222222222222validation", validation)
+            if validation:
+                if rec.state not in ('draft', 'approved'):
+                    raise UserError(
+                        _("Only a draft or approved payment can be posted."))
 
-            if any(inv.state != 'posted' for inv in self.reconciled_invoice_ids):
-                raise ValidationError(
-                    _("The payment cannot be processed because the invoice is not open!"))
-            self.move_id._post(soft=False)
+                if any(inv.state != 'posted' for inv in rec.reconciled_invoice_ids):
+                    raise ValidationError(
+                        _("The payment cannot be processed because the invoice is not open!"))
+                rec.move_id._post(soft=False)
 
     def _check_payment_approval(self):
+        value = True
         for rec in self:
             if rec.state == "draft":
                 first_approval = self.env['ir.config_parameter'].sudo().get_param(
@@ -92,8 +95,8 @@ class AccountPayment(models.Model):
                         rec.write({
                             'state': 'waiting_approval'
                         })
-                        return False
-        return True
+                        value = False
+        return value
 
     def approve_transfer(self):
         if self.is_approver:
@@ -103,8 +106,9 @@ class AccountPayment(models.Model):
             self.payment_id.action_post()
             for payment in self:
                 if payment.invoices_list_ids:
-                    debit_line = payment.line_ids.filtered(lambda l: l.account_id.internal_type == 'receivable')
-                    payment.invoices_list_ids.js_assign_outstanding_line(debit_line.ids)
+                    debit_line = payment.line_ids.filtered(lambda l: l.account_id.internal_type in ('receivable', 'payable'))
+                    for invoice in payment.invoices_list_ids:
+                        invoice.js_assign_outstanding_line(debit_line.ids)
 
     def reject_transfer(self):
         self.write({
@@ -118,11 +122,16 @@ class AccountPaymentRegister(models.TransientModel):
     def _create_payments(self):
         payments = super()._create_payments()
         count = 0
+        batches = self._get_batches()
+        lines = batches[0]['lines']
         if self._context.get('active_model') == 'account.move' and payments:
+            
             for payment in payments:
-                payment.write({"invoices_list_ids": [
-                              (6, 0, [self._context.get("active_ids")[count]]
-                                )]})
+                if not self.group_payment:
+                    payment.write({"invoices_list_ids": [(6, 0, [lines[count].move_id.id])]})
+                else:
+                    payment.write({"invoices_list_ids": [
+                                (6, 0, self._context.get("active_ids"))]})
                 count += 1
-
+                print("/dddddddddddddddddpaymentpaymentpaymentdddddddd",payment.invoices_list_ids)
         return payments
