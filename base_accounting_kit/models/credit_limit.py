@@ -123,6 +123,7 @@ class SaleOrder(models.Model):
     has_due = fields.Boolean()
     is_warning = fields.Boolean()
     due_amount = fields.Float(related='partner_id.due_amount')
+    active_limit = fields.Boolean(related='partner_id.active_limit')
     authorized_balance = fields.Float(related='partner_id.authorized_balance')
 
     # Disable block user on confirm and post invoice

@@ -27,24 +27,25 @@
                 <xpath expr="//field[@name='payment_term_id']" position="after">
                     <field name="has_due" invisible="1"/>
                     <field name="is_warning" invisible="1"/>
+                    <field name="active_limit" invisible="1"/>
                 </xpath>
                 <xpath expr="//header" position="after">
                     <div class="alert alert-info" role="alert" style="height: 40px; margin-bottom:0px;"
-                         attrs="{'invisible':[('has_due','=',False)]}">
+                         attrs="{'invisible':['|',('has_due','=',False), ('is_in_account_customer','=',False)]}">
                         This Customer's due amount is <strong><field name="due_amount"/></strong>.
                     </div>
                 </xpath>
                 <xpath expr="//sheet/div[@name='button_box']" position="after">
                     <div role="alert" class="alert alert-danger" style="height: 50px; width: 325px; margin-bottom:0px;"
-                         attrs="{'invisible':[('is_warning','=',False)]}"> <!--role="alert" class="alert alert-danger" style="height: 40px; width: 350px; margin-bottom:0px;"
+                         attrs="{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}"> <!--role="alert" class="alert alert-danger" style="height: 40px; width: 350px; margin-bottom:0px;"
                          -->
-                        <span attrs="{'invisible':[('is_warning','=',False)]}">Customer's <strong>warning limit</strong> has been crossed.</span>
+                        <span attrs="{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}">Customer's <strong>warning limit</strong> has been crossed !.</span>
                         <span><h4> Balance is:  <field name="authorized_balance"/></h4>.</span>
                     </div>
                     <div role="alert" class="alert alert-success" style="height: 50px; width: 325px; margin-bottom:0px;"
-                         attrs="{'invisible':[('is_warning','=',True)]}"> <!--role="alert" class="alert alert-danger" style="height: 40px; width: 350px; margin-bottom:0px;"
+                         attrs="{'invisible':['|',('is_warning','=',True),('is_in_account_customer','=',False)]}"> <!--role="alert" class="alert alert-danger" style="height: 40px; width: 350px; margin-bottom:0px;"
                          attrs="{'invisible':[('is_warning','=',False)]}"-->
-                        <span attrs="{'invisible':[('is_warning','=',False)]}">Customer's <strong>warning limit</strong> has been crossed.</span>
+                        <span attrs="{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}">Customer's <strong>warning limit</strong> has been crossed.</span>
                         <span><h4> .Balance is:  <field name="authorized_balance"/></h4>.</span>
                     </div>
                     <!--<div class="alert alert-warning" role="alert" style="height: 40px; width: 350px; margin-bottom:0px;">  attrs="{'invisible':[('is_warning','=',False)]}"-->
