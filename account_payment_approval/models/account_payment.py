@@ -66,11 +66,11 @@ class AccountPayment(models.Model):
                 if rec.state not in ('draft', 'approved'):
                     raise UserError(
                         _("Only a draft or approved payment can be posted."))
-
                 if any(inv.state != 'posted' for inv in rec.reconciled_invoice_ids):
                     raise ValidationError(
                         _("The payment cannot be processed because the invoice is not open!"))
                 rec.move_id._post(soft=False)
+
 
     def _check_payment_approval(self):
         value = True
@@ -128,10 +128,17 @@ class AccountPaymentRegister(models.TransientModel):
             
             for payment in payments:
                 if not self.group_payment:
-                    payment.write({"invoices_list_ids": [(6, 0, [lines[count].move_id.id])]})
+                    print("////////////////////////////////////", lines, len(lines) <= (count +1), count, len(lines))
+                    if len(lines) < count:
+                        payment.write({"invoices_list_ids": [(6, 0, [lines[count].move_id.id])]})
+                    else:
+                        payment.write({"invoices_list_ids": [(6, 0, [lines[count-1].move_id.id])]})
                 else:
                     payment.write({"invoices_list_ids": [
                                 (6, 0, self._context.get("active_ids"))]})
-                count += 1
+                if len(lines) < count:
+
+                    count += 1
+
                 print("/dddddddddddddddddpaymentpaymentpaymentdddddddd",payment.invoices_list_ids)
         return payments
