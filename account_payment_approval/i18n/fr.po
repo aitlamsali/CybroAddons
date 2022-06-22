@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-12 12:01+0000\n"
-"PO-Revision-Date: 2022-05-13 16:18+0100\n"
+"POT-Creation-Date: 2022-06-22 11:30+0000\n"
+"PO-Revision-Date: 2022-06-22 12:31+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 
 #. module: account_payment_approval
 #: model_terms:ir.ui.view,arch_db:account_payment_approval.res_config_settings_view_form_inherit
@@ -24,7 +24,6 @@ msgstr "Montant"
 
 #. module: account_payment_approval
 #: model:ir.model.fields,field_description:account_payment_approval.field_res_config_settings__approval_currency_id
-#, fuzzy
 msgid "Approval Currency"
 msgstr "Monnaie d'approbation"
 
@@ -51,7 +50,6 @@ msgstr "Paramètres de config"
 
 #. module: account_payment_approval
 #: model:ir.model.fields,help:account_payment_approval.field_res_config_settings__approval_currency_id
-#, fuzzy
 msgid "Converts the payment amount to this currency if chosen."
 msgstr "Convertit le montant du paiement dans cette devise si elle est choisie."
 
@@ -63,13 +61,13 @@ msgstr "Devise:"
 #. module: account_payment_approval
 #: model:ir.model.fields,field_description:account_payment_approval.field_account_move__display_name
 #: model:ir.model.fields,field_description:account_payment_approval.field_account_payment__display_name
+#: model:ir.model.fields,field_description:account_payment_approval.field_account_payment_register__display_name
 #: model:ir.model.fields,field_description:account_payment_approval.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: account_payment_approval
 #: model_terms:ir.ui.view,arch_db:account_payment_approval.res_config_settings_view_form_inherit
-#, fuzzy
 msgid ""
 "Enable to bring the approval in the payment.\n"
 "                                    Only account managers can approve the request."
@@ -79,26 +77,29 @@ msgstr ""
 
 #. module: account_payment_approval
 #: model_terms:ir.ui.view,arch_db:account_payment_approval.res_config_settings_view_form_inherit
-#, fuzzy
 msgid "Enables approval feature in payments."
 msgstr "Active la fonction d'approbation dans les paiements."
 
 #. module: account_payment_approval
 #: model:ir.model.fields,field_description:account_payment_approval.field_account_move__id
 #: model:ir.model.fields,field_description:account_payment_approval.field_account_payment__id
+#: model:ir.model.fields,field_description:account_payment_approval.field_account_payment_register__id
 #: model:ir.model.fields,field_description:account_payment_approval.field_res_config_settings__id
 msgid "ID"
 msgstr "ID"
 
 #. module: account_payment_approval
 #: model:ir.model.fields,help:account_payment_approval.field_res_config_settings__approval_amount
-#, fuzzy
 msgid "If amount is 0.00, All the payments go through approval."
 msgstr "Si le montant est de 0.00, tous les paiements sont approuvés."
 
 #. module: account_payment_approval
+#: model:ir.model.fields,field_description:account_payment_approval.field_account_payment__invoices_list_ids
+msgid "Invoice List"
+msgstr "Liste Facture"
+
+#. module: account_payment_approval
 #: model:ir.model.fields,field_description:account_payment_approval.field_account_payment__is_approver
-#, fuzzy
 msgid "Is Approver"
 msgstr "Est approbateur"
 
@@ -110,32 +111,30 @@ msgstr "Pièce comptable"
 #. module: account_payment_approval
 #: model:ir.model.fields,field_description:account_payment_approval.field_account_move____last_update
 #: model:ir.model.fields,field_description:account_payment_approval.field_account_payment____last_update
+#: model:ir.model.fields,field_description:account_payment_approval.field_account_payment_register____last_update
 #: model:ir.model.fields,field_description:account_payment_approval.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: account_payment_approval
 #: model:ir.model.fields,field_description:account_payment_approval.field_res_config_settings__approval_amount
-#, fuzzy
 msgid "Minimum Approval Amount"
 msgstr "Montant minimum d'approbation"
 
 #. module: account_payment_approval
 #: code:addons/account_payment_approval/models/account_payment.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Only a draft or approved payment can be posted."
 msgstr "Seul un projet ou un paiement approuvé peut être comptabilisé."
 
 #. module: account_payment_approval
 #: model:ir.model.fields,field_description:account_payment_approval.field_res_config_settings__payment_approval
 #: model_terms:ir.ui.view,arch_db:account_payment_approval.res_config_settings_view_form_inherit
-#, fuzzy
 msgid "Payment Approval"
 msgstr "Approbation du paiement"
 
 #. module: account_payment_approval
 #: model:ir.model.fields,field_description:account_payment_approval.field_res_config_settings__approval_user_id
-#, fuzzy
 msgid "Payment Approver"
 msgstr "Approbation des paiements"
 
@@ -143,6 +142,11 @@ msgstr "Approbation des paiements"
 #: model:ir.model,name:account_payment_approval.model_account_payment
 msgid "Payments"
 msgstr "Paiements"
+
+#. module: account_payment_approval
+#: model:ir.model,name:account_payment_approval.model_account_payment_register
+msgid "Register Payment"
+msgstr "Enregistrer un paiement"
 
 #. module: account_payment_approval
 #: model_terms:ir.ui.view,arch_db:account_payment_approval.view_account_payment_form_inherit
@@ -163,7 +167,7 @@ msgstr "Statut"
 
 #. module: account_payment_approval
 #: code:addons/account_payment_approval/models/account_payment.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "The payment cannot be processed because the invoice is not open!"
 msgstr "Le paiement ne peut être traité car la facture n'est pas ouverte !"
 

@@ -59,10 +59,14 @@ class AccountPayment(models.Model):
         """
         if not self:
             return False
-        validation = self._check_payment_approval()
+        print("ddddddddddddddddddddddddddd", self._context)
+        count = self._context.get('count') or 0
+
+
         for rec in self:
-            print("/2222222222222222222222validation", validation)
-            if validation:
+            print(":33333333333333333333333333333333333333333333333", count, rec)
+            if rec._check_payment_approval(count):
+                print("/222222222222222222222222222222", rec.state)
                 if rec.state not in ('draft', 'approved'):
                     raise UserError(
                         _("Only a draft or approved payment can be posted."))
@@ -70,12 +74,25 @@ class AccountPayment(models.Model):
                     raise ValidationError(
                         _("The payment cannot be processed because the invoice is not open!"))
                 rec.move_id._post(soft=False)
+            count+=1
 
 
-    def _check_payment_approval(self):
+    def _check_payment_approval(self, count):
         value = True
+#        batches = self._get_batches()
+        lines = self._context.get('lines_ids')
+        group_payment = self._context.get('group_payment')
+
         for rec in self:
-            if rec.state == "draft":
+            move_ids = self.env['account.move']
+            if self._context.get('active_model'):
+                move_ids = move_ids.browse(self._context.get('active_ids'))
+            if not group_payment:
+                if len(lines) >= count:
+                    move_ids = lines[count].move_id
+            if len(lines) >= count:
+                count += 1
+            if rec.state == "draft" and move_ids.filtered(lambda x : x.is_in_account_customer):
                 first_approval = self.env['ir.config_parameter'].sudo().get_param(
                     'account_payment_approval.payment_approval')
                 if first_approval:
@@ -96,6 +113,7 @@ class AccountPayment(models.Model):
                             'state': 'waiting_approval'
                         })
                         value = False
+        print("/1111111111111111111111111111111111", value)
         return value
 
     def approve_transfer(self):
@@ -120,15 +138,16 @@ class AccountPaymentRegister(models.TransientModel):
     _inherit = 'account.payment.register'
 
     def _create_payments(self):
-        payments = super()._create_payments()
-        count = 0
         batches = self._get_batches()
         lines = batches[0]['lines']
+        self = self.with_context(lines_ids = lines, group_payment = self.group_payment)
+        payments = super(AccountPaymentRegister, self)._create_payments()
+        count = 0
+        print("/sssssssssssssssssssssssssssssssssss", self._context.get('active_model'))
         if self._context.get('active_model') == 'account.move' and payments:
             
             for payment in payments:
                 if not self.group_payment:
-                    print("////////////////////////////////////", lines, len(lines) <= (count +1), count, len(lines))
                     if len(lines) < count:
                         payment.write({"invoices_list_ids": [(6, 0, [lines[count].move_id.id])]})
                     else:
