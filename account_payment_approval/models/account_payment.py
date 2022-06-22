@@ -64,7 +64,6 @@ class AccountPayment(models.Model):
 
 
         for rec in self:
-            print(":33333333333333333333333333333333333333333333333", count, rec)
             if rec._check_payment_approval(count):
                 print("/222222222222222222222222222222", rec.state)
                 if rec.state not in ('draft', 'approved'):
@@ -80,7 +79,8 @@ class AccountPayment(models.Model):
     def _check_payment_approval(self, count):
         value = True
 #        batches = self._get_batches()
-        lines = self._context.get('lines_ids')
+        lines = self._context.get('lines_ids') #lines_ids
+        print("MMMMMMMMMMMMMMMMMMMMMMM", lines, type(lines) , self._context, self._context.get('line_ids'))
         group_payment = self._context.get('group_payment')
 
         for rec in self:
@@ -88,9 +88,9 @@ class AccountPayment(models.Model):
             if self._context.get('active_model'):
                 move_ids = move_ids.browse(self._context.get('active_ids'))
             if not group_payment:
-                if len(lines) >= count:
+                if lines and len(lines) >= count:
                     move_ids = lines[count].move_id
-            if len(lines) >= count:
+            if lines and len(lines) >= count:
                 count += 1
             if rec.state == "draft" and move_ids.filtered(lambda x : x.is_in_account_customer):
                 first_approval = self.env['ir.config_parameter'].sudo().get_param(
@@ -138,12 +138,17 @@ class AccountPaymentRegister(models.TransientModel):
     _inherit = 'account.payment.register'
 
     def _create_payments(self):
+        if self._context.get('active_model') == 'account.move':
+            if self.env['account.payment'].search([
+                ('invoices_list_ids', 'in', self._context.get('active_ids')),
+                ('state', '=', 'waiting_approval')
+            ]):
+                raise UserError(_('Some Invoice already waiting payment , please complete payment.'))
         batches = self._get_batches()
         lines = batches[0]['lines']
         self = self.with_context(lines_ids = lines, group_payment = self.group_payment)
         payments = super(AccountPaymentRegister, self)._create_payments()
         count = 0
-        print("/sssssssssssssssssssssssssssssssssss", self._context.get('active_model'))
         if self._context.get('active_model') == 'account.move' and payments:
             
             for payment in payments:
