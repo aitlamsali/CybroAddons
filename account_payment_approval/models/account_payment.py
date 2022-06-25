@@ -92,7 +92,7 @@ class AccountPayment(models.Model):
                     move_ids = lines[count].move_id
             if lines and len(lines) >= count:
                 count += 1
-            if rec.state == "draft" and move_ids.filtered(lambda x : x.is_in_account_customer):
+            if rec.state == "draft" and (move_ids.filtered(lambda x : x.is_in_account_customer) or rec.partner_id.is_in_account_customer == True):
                 first_approval = self.env['ir.config_parameter'].sudo().get_param(
                     'account_payment_approval.payment_approval')
                 if first_approval:
