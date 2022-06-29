@@ -138,12 +138,12 @@ class AccountPaymentRegister(models.TransientModel):
     _inherit = 'account.payment.register'
 
     def _create_payments(self):
-        if self._context.get('active_model') == 'account.move':
-            if self.env['account.payment'].search([
-                ('invoices_list_ids', 'in', self._context.get('active_ids')),
-                ('state', '=', 'waiting_approval')
-            ]):
-                raise UserError(_('Some Invoice already waiting payment , please complete payment.'))
+        # if self._context.get('active_model') == 'account.move':
+        #     if self.env['account.payment'].search([
+        #         ('invoices_list_ids', 'in', self._context.get('active_ids')),
+        #         ('state', '=', 'waiting_approval')
+        #     ]):
+        #         raise UserError(_('Some Invoice already waiting payment , please complete payment.'))
         batches = self._get_batches()
         lines = batches[0]['lines']
         self = self.with_context(lines_ids = lines, group_payment = self.group_payment)
