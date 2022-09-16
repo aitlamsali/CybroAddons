@@ -62,35 +62,74 @@ class ResPartner(models.Model):
         for rec in self:
             if not rec.id:
                 continue
-            confirmed_so = self.env["sale.order"].sudo().search(
+            contacts_confirmed_so = self.env["sale.order"].search(
+                [
+                    ("partner_id", "in", rec.child_ids.ids),
+                    ("state", "in", ["sale", "done"]),
+                    ("invoice_status", "!=", "invoiced"),
+                ]
+            ).mapped('amount_total')
+            confirmed_so = self.env["sale.order"].search(
                 [
                     ("partner_id", "=", rec.id),
                     ("state", "in", ["sale", "done"]),
                     ("invoice_status", "!=", "invoiced"),
                 ]
             ).mapped('amount_total')
-            sum_confirmed_so = sum(confirmed_so)
+            sum_confirmed_so = sum(confirmed_so) + sum(contacts_confirmed_so)
             rec.confirmed_so = sum_confirmed_so
 
-            draft_invoice = self.env["account.move"].sudo().search(
+            contacts_draft_invoice = self.env["account.move"].search(
+                [
+                    ("partner_id", "in", rec.child_ids.ids),
+                    ("state", "in", ["draft"]),
+                    ("move_type", "=", "out_invoice"),
+                ]
+            ).mapped('amount_total')
+
+            draft_invoice = self.env["account.move"].search(
                 [
                     ("partner_id", "=", rec.id),
                     ("state", "in", ["draft"]),
                     ("move_type", "=", "out_invoice"),
                 ]
             ).mapped('amount_total')
-            sum_draft_invoice = sum(draft_invoice)
+            sum_draft_invoice = sum(draft_invoice) + sum(contacts_draft_invoice)
             rec.draft_invoice = sum_draft_invoice
 
-            confirm_invoice = self.env["account.move"].sudo().search(
+            contacts_confirm_invoice = self.env["account.move"].search(
+                [
+                    ("partner_id", "=", rec.child_ids.ids),
+                    ("state", "in", ["posted"]),
+                    ("move_type", "=", "out_invoice"),
+                ]
+            ).mapped('amount_total')
+
+            confirm_invoice = self.env["account.move"].search(
                 [
                     ("partner_id", "=", rec.id),
                     ("state", "in", ["posted"]),
                     ("move_type", "=", "out_invoice"),
                 ]
             ).mapped('amount_total')
-            sum_confirm_invoice = sum(confirm_invoice)
+            sum_confirm_invoice = sum(confirm_invoice) + sum(contacts_confirm_invoice)
             rec.confirmed_invoice = sum_confirm_invoice
+
+            contacts_credit = self.env["res.partner"].search(
+                [
+                    ("id", "in", rec.child_ids.ids),
+                ]
+            ).mapped('credit')
+
+            contacts_debit = self.env["res.partner"].search(
+                [
+                    ("id", "in", rec.child_ids.ids),
+                ]
+            ).mapped('debit')
+
+            rec.credit += sum(contacts_credit)
+            rec.debit += sum(contacts_debit)
+
 
             rec.due_amount = rec.credit - rec.debit + sum_draft_invoice + sum_confirmed_so
             payment_ids = self.env['account.payment'].sudo().search([
