@@ -49,7 +49,10 @@ class AccountPayment(models.Model):
             'account_payment_approval.payment_approval')
         approver_id = int(self.env['ir.config_parameter'].sudo().get_param(
             'account_payment_approval.approval_user_id'))
-        self.is_approver = True if self.env.user.id == approver_id and approval else False
+        approver_id_2 = int(self.env['ir.config_parameter'].sudo().get_param(
+            'account_payment_approval.approval_user_id_2'))
+        self.is_approver = True if self.env.user.id == approver_id or self.env.user.id == approver_id_2 and approval else False
+        #print("dddddddddddddddddddddddddd", approver_id, approver_id_2, self.is_approver, approval)
 
     is_approver = fields.Boolean(compute=_check_is_approver, readonly=True)
 

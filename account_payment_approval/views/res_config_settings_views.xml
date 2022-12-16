@@ -28,6 +28,12 @@
                                         <field name="approval_user_id"
                                                attrs="{'required': [('payment_approval', '=', True)]}"/>
                                     </div>
+                                    <div class="row">
+                                        <label string="Secondary Approvar" for="approval_user_id_2"
+                                               class="col-lg-3 o_light_label"/>
+                                        <field name="approval_user_id_2"
+                                               attrs="{'required': [('payment_approval', '=', True)]}"/>
+                                    </div>
                                 </div>
                                 <div class="content-group" attrs="{'invisible': [('payment_approval', '=', False)]}">
                                     <div class="row">

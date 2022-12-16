@@ -35,6 +35,9 @@ class ResConfigSettings(models.TransientModel):
     approval_user_id = fields.Many2one('res.users', string="Payment Approver", required=False,
                                        domain=_get_account_manager_ids,
                                        config_parameter='account_payment_approval.approval_user_id')
+    approval_user_id_2 = fields.Many2one('res.users', string="Secondary Payment Approver", required=False,
+                                       domain=_get_account_manager_ids,
+                                       config_parameter='account_payment_approval.approval_user_id_2')
     approval_amount = fields.Float(
         'Minimum Approval Amount', config_parameter='account_payment_approval.approval_amount',
         help="If amount is 0.00, All the payments go through approval.")
