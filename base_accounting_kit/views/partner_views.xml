@@ -11,14 +11,15 @@
                 <field name="warning_stage" optional="show"/>
                 <field name="blocking_stage" optional="show"/>
                 <field name="active_limit" optional="show"/>
-                <field name="confirmed_so" optional="show" />
-                <field name="draft_invoice" optional="show"/>
-<!--            <field name="confirmed_invoice" optional="show"/>-->
+                <field name="confirmed_so" optional="show" string="Bons Confirmés"/>
+                <field name="draft_invoice" optional="show" string="Factures Brouillons"/>
+           <field name="confirmed_invoice" optional="show" string="Factures Confirmées"/>
+           <field name="payments" optional="show" string="Paiements"/>
                 <!--<field name="real_due_amount" optional="show"/>-->
-                <field name="credit" optional="show"/>
-                <field name="authorized_balance" optional="show"/>
+                <!--<field name="credit" optional="hide"/>-->
+                <field name="authorized_balance" optional="hide"/>
                 <!--<field name="debit" optional="show"/>-->
-                <field name="due_amount" optional="show" string="Due Amount"/>
+                <field name="due_amount" optional="show" string="Solde / Montant Dû"/>
                 <!--<field name="due_invoice" optional="show"/>-->
                 <!--<field name="due_invoice" optional="show"/>-->
             </xpath>

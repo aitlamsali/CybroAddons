@@ -38,12 +38,13 @@ class ResPartner(models.Model):
                                        "customer is crossed blocking amount."
                                        "Set its value to 0.00 to disable "
                                        "this feature")
-    due_amount = fields.Float(string="Total Due", compute="compute_due_amount")
-    real_due_amount = fields.Float(string="Global Due", compute="compute_due_amount", help="All due including confirmed SO")
-    confirmed_so = fields.Float(string="Confirmed SO", compute="compute_due_amount")
-    draft_invoice = fields.Float(string="Draft Invoice", compute="compute_due_amount")
-    confirmed_invoice = fields.Float(string="Due Invoice", compute="compute_due_amount")
-    over_payment = fields.Float(string="Over Payment", compute="compute_due_amount")
+    due_amount = fields.Float(string="Total Due", compute="compute_due_amount", help="Factures Confirmées + Bon Confirmés + Factures Brouillon - Paiements Avances  (Attribuées et Non Attribuées)")
+    real_due_amount = fields.Float(string="Global Due", compute="compute_due_amount", help="Bon Confirmés + Factures Confirmées + Factures Brouillons - Avances non attribuées")
+    confirmed_so = fields.Float(string="Confirmed SO", compute="compute_due_amount" ,help="Bons de Commandes Confirmés")
+    draft_invoice = fields.Float(string="Draft Invoice", compute="compute_due_amount" ,help="Factures Brouillons")
+    confirmed_invoice = fields.Float(string="Confirmed Due Invoice", compute="compute_due_amount" ,help="Factures Confirmées Payées et Non Payées")
+    over_payment = fields.Float(string="Over Payment", compute="compute_due_amount" ,help="")
+    payments = fields.Float(string="Total Payments", compute="compute_due_amount", help="Total Payments")
     active_limit = fields.Boolean("Active Credit Limit", default=False)
 
     enable_credit_limit = fields.Boolean(string="Credit Limit Enabled",
@@ -131,6 +132,26 @@ class ResPartner(models.Model):
             rec.debit += sum(contacts_debit)
 
 
+            contacts_payments = self.env["account.payment"].search(
+                [
+                    ("partner_id", "in", rec.child_ids.ids),
+                    ("state", "in", ["posted"]),
+                    ("partner_type", "=", "customer"),
+                ]
+            ).mapped('amount')
+
+            payments = self.env["account.payment"].search(
+                [
+                    ("partner_id", "=", rec.id),
+                    ("state", "in", ["posted"]),
+                    ("partner_type", "=", "customer"),
+                ]
+            ).mapped('amount')
+            sum_payments = sum(payments) + sum(contacts_payments)
+            rec.payments = sum_payments
+
+
+
             rec.due_amount = rec.credit - rec.debit + sum_draft_invoice + sum_confirmed_so
             payment_ids = self.env['account.payment'].sudo().search([
                 ('partner_id', '=', rec.id),
@@ -171,7 +192,7 @@ class SaleOrder(models.Model):
         blocking stage"""
         print("/dddddddddddddddddddd", self)
         if self.partner_id.active_limit \
-                and self.partner_id.enable_credit_limit:
+                and self.partner_id.enable_credit_limit and self.is_in_account_customer:
             if self.due_amount >= self.partner_id.blocking_stage:
                 if self.partner_id.blocking_stage != 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
                     raise UserError(_(
@@ -231,21 +252,21 @@ class AccountMove(models.Model):
     due_amount = fields.Float(related='partner_id.due_amount')
 
     # Disable block user on confirm and post invoice
-    # def action_post(self):
-    #     """To check the selected customers due amount is exceed than
-    #     blocking stage"""
-    #     pay_type = ['out_invoice', 'out_refund', 'out_receipt']
-    #     for rec in self:
-    #         if rec.partner_id.active_limit and rec.move_type in pay_type \
-    #                 and rec.partner_id.enable_credit_limit:
-    #             if rec.due_amount >= rec.partner_id.blocking_stage:
-    #                 if rec.partner_id.blocking_stage != 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
-    #                     raise UserError(_(
-    #                         "%s is in  Blocking Stage and "
-    #                         "has a due amount of %s %s to pay") % (
-    #                                         rec.partner_id.name, rec.due_amount,
-    #                                         rec.currency_id.symbol))
-    #     return super(AccountMove, self).action_post()
+    def action_post(self):
+        """To check the selected customers due amount is exceed than
+        blocking stage"""
+        pay_type = ['out_invoice', 'out_refund', 'out_receipt']
+        for rec in self:
+            if rec.partner_id.active_limit and rec.move_type in pay_type \
+                    and rec.partner_id.enable_credit_limit and self.is_in_account_customer:
+                if rec.due_amount >= rec.partner_id.blocking_stage:
+                    if rec.partner_id.blocking_stage != 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
+                        raise UserError(_(
+                            "%s is in  Blocking Stage and "
+                            "has a due amount of %s %s to pay") % (
+                                            rec.partner_id.name, rec.due_amount,
+                                            rec.currency_id.symbol))
+        return super(AccountMove, self).action_post()
 
     @api.onchange('partner_id')
     def check_due(self):
