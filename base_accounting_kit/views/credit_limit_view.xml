@@ -71,7 +71,7 @@
                 <xpath expr="//sheet/div[@name='button_box']" position="after">
                     <div role="alert" class="alert alert-danger" style="height: 40px; width: 350px; margin-bottom:0px;"
                          attrs="{'invisible':['|',('is_warning','=',False),('move_type','not in',('out_invoice','out_refund','out_receipt'))]}">
-                        This customer's <strong>warning limit</strong> has been crossed.
+                        This customer's <strong>warning limit</strong> has been crossed. > Balance = <field name="due_amount"/>
                     </div>
                 </xpath>
             </field>
