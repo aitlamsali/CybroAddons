@@ -40,15 +40,27 @@
                          attrs="{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}"> <!--role="alert" class="alert alert-danger" style="height: 40px; width: 350px; margin-bottom:0px;"
                          -->
                         <span attrs="{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}">Customer's <strong>warning limit</strong> has been crossed !.</span>
-                        <span><h4> Balance is:  <field name="authorized_balance"/></h4>.</span>
+                        <span attrs="{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}"><h4> Balance is:  <field name="authorized_balance"/></h4>.</span>
                     </div>
                     <div role="alert" class="alert alert-success" style="height: 50px; width: 325px; margin-bottom:0px;"
                          attrs="{'invisible':['|',('is_warning','=',True),('is_in_account_customer','=',False)]}"> <!--role="alert" class="alert alert-danger" style="height: 40px; width: 350px; margin-bottom:0px;"
                          attrs="{'invisible':[('is_warning','=',False)]}"-->
                         <span attrs="{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}">Customer's <strong>warning limit</strong> has been crossed.</span>
-                        <span><h4> .Balance is:  <field name="authorized_balance"/></h4>.</span>
+                        <span attrs="{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}"><h4> .Balance is:  <field name="authorized_balance"/></h4>.</span>
                     </div>
                     <!--<div class="alert alert-warning" role="alert" style="height: 40px; width: 350px; margin-bottom:0px;">  attrs="{'invisible':[('is_warning','=',False)]}"-->
+                </xpath>
+                                <xpath expr="//button[@id='action_confirm']" position="attributes">
+                    <!--<button name="action_confirm" string="Confirm" type="object" attrs="{'invisible': [('state', 'not in', ['draft', 'waiting_overdue_confirmation'])]}"/>-->
+                    <attribute name="attrs">{'invisible': [('state', 'not in', ['sent','waiting_overdue_confirmation'])]}</attribute>
+                </xpath>
+
+                <!--<button name="action_confirm" id="action_confirm" string="Confirm" class="btn-primary" type="object" attrs="{'invisible': [('state', 'not in', ['sent'])]}"/>-->
+
+
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                    <button
+                        string="Ask for Approval" name="ask_for_approval" type="object" class="btn-primary" invisible="1"/>
                 </xpath>
             </field>
         </record>
@@ -71,10 +83,40 @@
                 <xpath expr="//sheet/div[@name='button_box']" position="after">
                     <div role="alert" class="alert alert-danger" style="height: 40px; width: 350px; margin-bottom:0px;"
                          attrs="{'invisible':['|',('is_warning','=',False),('move_type','not in',('out_invoice','out_refund','out_receipt'))]}">
-                        This customer's <strong>warning limit</strong> has been crossed. > Balance = <field name="due_amount"/>
+                        This customer's <strong>warning limit</strong> has been crossed. > Total = <field name="due_amount"/>
                     </div>
                 </xpath>
+
+
+
+
             </field>
         </record>
+
+                    <record id="action_mass_overdue_confirm" model="ir.actions.server">
+                <field name="name">Mass Overdue Confirm</field>
+                <field name="model_id" ref="sale.model_sale_order"/>
+                <field name="binding_model_id" ref="sale.model_sale_order"/>
+                <field name="state">code</field>
+                <field name="code">
+                    if records:
+                        records._mass_overdue_confirm()
+                </field>
+            </record>
+
+            <record id="view_inherit_sale_order_filter_approval" model="ir.ui.view">
+                <field name="name">sale.order.search.inherit.quotation</field>
+                <field name="model">sale.order</field>
+                <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//filter[@name='sales']" position="after">
+                        <filter string="Over Limit" name="over_limit" domain="[('state','=','waiting_overdue_confirmation')]"/>
+                    </xpath>
+                </field>
+            </record>
+
+
+
+
     </data>
 </odoo>

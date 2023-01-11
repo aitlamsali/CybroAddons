@@ -110,6 +110,7 @@
         'report/report.xml',
         'report/multiple_invoice_layouts.xml',
         'report/multiple_invoice_report.xml',
+        'wizard/sale_confirm_view.xml',
     ],
     'qweb': [
         'static/src/xml/template.xml',

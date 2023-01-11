@@ -35,3 +35,4 @@ from . import journal_audit
 from . import partner_ledger
 from . import tax_report
 from . import trial_balance
+from . import credit_ask_approval_wizard

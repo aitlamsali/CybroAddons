@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  © 2017 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<odoo>
+
+<record id="sale_confirm_form" model="ir.ui.view">
+    <field name="name">credit.ask.approval.wizard.form</field>
+    <field name="model">credit.ask.approval.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Confirm Order">
+            <div><p>Merci de faire attention, ce client a dépassé le plafond, demandez l'autorisation.</p></div>
+            <footer>
+                <button type="object" name="confirm"
+                        string="Ask For Approval" class="btn-primary" />
+                <button type="object" name="action_confirm"
+                        string="Confirm" class="btn-primary" groups="base_accounting_kit.group_account_credit_limit_approver" invisible="1"/>
+                <button special="cancel" string="Annuler" class="btn-default"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="sale_confirm_action" model="ir.actions.act_window">
+    <field name="name">Credit Limit Approve Order</field>
+    <field name="res_model">credit.ask.approval.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+</record>
+
+</odoo>

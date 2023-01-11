@@ -29,11 +29,13 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     warning_stage = fields.Float(string='Warning Amount',
+                                 default="-1",
                                  help="A warning message will appear once the "
                                       "selected customer is crossed warning "
                                       "amount. Set its value to 0.00 to"
                                       " disable this feature")
     blocking_stage = fields.Float(string='Blocking Amount',
+                                  default="-100",
                                   help="Cannot make sales once the selected "
                                        "customer is crossed blocking amount."
                                        "Set its value to 0.00 to disable "
@@ -187,21 +189,63 @@ class SaleOrder(models.Model):
     authorized_balance = fields.Float(related='partner_id.authorized_balance')
 
     # Disable block user on confirm and post invoice
-    def _action_confirm(self):
+    def action_confirm(self):
+        print("?elf.partner_id.active_limit", self.partner_id.active_limit, self.partner_id.enable_credit_limit)
+        if self.partner_id.active_limit \
+                and self.partner_id.enable_credit_limit and not self._context.get('is_confirm'):
+            if not self.user_has_groups('sales_credit_limit.group_account_credit_limit_approver') and self.state == 'waiting_overdue_confirmation':
+                raise UserError(_(
+                        "%s is on  Blocking Stage and "
+                        "has only a due amount of %s %s to pay, his blocking stage %s") % (
+                                        self.partner_id.name, self.due_amount,
+                                        self.currency_id.symbol, self.partner_id.blocking_stage))
+
+            if not self._context.get('is_confirm') and self.due_amount + self.amount_total > self.partner_id.blocking_stage and self.state != 'waiting_overdue_confirmation':
+                #
+                if self.partner_id.blocking_stage != 0:
+                    action = self.env.ref('sales_credit_limit.sale_confirm_action').read()[0]
+                    return action
+        return super(SaleOrder, self).action_confirm()
+
+
+    def ask_for_approval(self):
+        # action = self.env.ref('sales_credit_limit.sale_confirm_action').read()[0]
+        # return action
+        if self.partner_id.active_limit \
+                and self.partner_id.enable_credit_limit :
+                # and self.is_in_account_customer
+            print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", self.due_amount, self.amount_total , self.partner_id.blocking_stage)
+            if (self.due_amount + self.amount_total) > self.partner_id.blocking_stage:
+                if self.partner_id.blocking_stage != 0:
+
+                    self.state = 'waiting_overdue_confirmation'
+            # else :
+            #     raise UserError(_(
+            #         "%s is not on  Blocking Stage and "
+            #         "has only a due amount of %s %s to pay, his blocking stage %s") % (
+            #                         self.partner_id.name, self.due_amount,
+            #                         self.currency_id.symbol , self.partner_id.blocking_stage))
+
+
+    def _mass_overdue_confirm(self):
         """To check the selected customers due amount is exceed than
         blocking stage"""
-        print("/dddddddddddddddddddd", self)
-        if self.partner_id.active_limit \
-                and self.partner_id.enable_credit_limit and self.is_in_account_customer:
-            if self.due_amount >= self.partner_id.blocking_stage:
-                if self.partner_id.blocking_stage != 0 and not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver'):
-                    raise UserError(_(
-                        "%s is in  Blocking Stage and "
-                        "has a due amount of %s %s to pay") % (
-                                        self.partner_id.name, self.due_amount,
-                                        self.currency_id.symbol))
-        return super(SaleOrder, self)._action_confirm()
 
+        all_approval = all(rec.state == 'waiting_overdue_confirmation' for rec in self)
+
+        if not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver') or not all_approval:
+            raise UserError(_(
+                "Please select only qutoations on approval state, or if you are not allowed, you can contact the manager ! "))
+        else :
+            for rec in self :
+                rec.action_confirm()
+
+    state = fields.Selection(
+        selection_add=[('waiting_overdue_confirmation', 'Waiting Overdue Confirmation'),
+                       #('approved', 'Approved'),
+                       #('rejected', 'Rejected')
+                       ],
+        ondelete={'waiting_overdue_confirmation': 'set default'})
     # Disable block user on create SO
     # Need to add parameter, so we block on draft only if selected
     # @api.model

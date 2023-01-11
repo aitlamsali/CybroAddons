@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-13 22:29+0000\n"
-"PO-Revision-Date: 2022-05-13 23:32+0100\n"
+"POT-Creation-Date: 2023-01-08 19:40+0000\n"
+"PO-Revision-Date: 2023-01-08 20:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. module: base_accounting_kit
 #: code:addons/base_accounting_kit/models/account_asset.py:0
@@ -51,21 +51,25 @@ msgid "%s is in  Blocking Stage and has a due amount of %s %s to pay"
 msgstr "%s est en phase de blocage et a un montant dû de %s %s à payer"
 
 #. module: base_accounting_kit
+#: code:addons/base_accounting_kit/models/credit_limit.py:0
+#, python-format
+msgid "%s is not on  Blocking Stage and has only a due amount of %s %s to pay, his blocking stage %s"
+msgstr "%s n'est pas en phase de blocage, en cours est de /%s %s à payer, la limite est a %s"
+
+#. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.header_view
 msgid ".Balance is:"
 msgstr "Le solde est :"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid "07/08/2020"
-msgstr "07/08/2020"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid "08/07/2020"
-msgstr "08/07/2020"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_bank_book
@@ -106,79 +110,70 @@ msgstr "                                    <strong>A la date :</strong>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.background
-#, fuzzy
 msgid "<i class=\"fa fa-at\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
-msgstr "<i class=\"fa fa-at\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_followup_followup_kanban
-#, fuzzy
 msgid "<i class=\"fa fa-building\" role=\"img\" aria-label=\"Enterprise\"/>"
-msgstr "<i class=\"fa fa-building\" role=\"img\" aria-label=\"Enterprise\"/>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.background
-#, fuzzy
 msgid "<i class=\"fa fa-building-o\" role=\"img\" aria-label=\"Fiscal number\"/>"
-msgstr "<i class=\"fa fa-building-o\" role=\"img\" aria-label=\"Fiscal number\"/>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.background
-#, fuzzy
 msgid "<i class=\"fa fa-globe\" role=\"img\" aria-label=\"Website\" title=\"Website\"/>"
-msgstr "<i class=\"fa fa-globe\" role=\"img\" aria-label=\"Website\" title=\"Website\"/>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.background
-#, fuzzy
 msgid "<i class=\"fa fa-phone\" role=\"img\" aria-label=\"Phone\" title=\"Phone\"/>"
-msgstr "<i class=\"fa fa-phone\" role=\"img\" aria-label=\"Phone\" title=\"Phone\"/>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.header_view
-#, fuzzy
-msgid "<span attrs=\"{'invisible':[('is_warning','=',False)]}\">Customer's <strong>warning limit</strong> has been crossed.</span>"
-msgstr "<span attrs=\"{'invisible':[('is_warning','=',False)]}\">La <strong>limite d'alerte</strong> du client a été franchie.</span>"
+msgid "<span attrs=\"{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}\">Customer's <strong>warning limit</strong> has been crossed !.</span>"
+msgstr ""
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.header_view
+msgid "<span attrs=\"{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}\">Customer's <strong>warning limit</strong> has been crossed.</span>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid "<span class=\"text-nowrap\">$ 18,750.00</span>"
-msgstr "<span class=\"text-nowrap\">$ 18,750.00</span>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid ""
 "<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">\n"
 "                                                       143,750.00</span></span>"
 msgstr ""
-"<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">\n"
-"                                                       143,750.00</span></span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid "<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">117,500.00</span></span>"
-msgstr "<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">117,500.00</span></span>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid "<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">7,500.00</span></span>"
-msgstr "<span class=\"text-nowrap\">$ <span class=\"oe_currency_value\">7,500.00</span></span>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid "<span class=\"text-nowrap\">1,500.00</span>"
-msgstr "<span class=\"text-nowrap\">1,500.00</span>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid "<span class=\"text-nowrap\">23,500.00</span>"
-msgstr "<span class=\"text-nowrap\">23,500.00</span>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
@@ -205,27 +200,23 @@ msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid "<span id=\"line_tax_ids\">15.00%</span>"
-msgstr "<span id=\"line_tax_ids\">15.00%</span>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid "<span itemprop=\"name\">Deco Addict</span>"
-msgstr "<span itemprop=\"name\">Deco Addict</span>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid "<span>$ <span class=\"oe_currency_value\">125,000.00</span></span>"
-msgstr "<span>$ <span class=\"oe_currency_value\">125,000.00</span></span>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
-#, fuzzy
 msgid "<span>5.000</span>"
-msgstr "<span>5.000</span>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
@@ -234,9 +225,8 @@ msgstr "<span>Montant</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_financial
-#, fuzzy
 msgid "<span>Comp</span>"
-msgstr "<span>Comp</span>"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
@@ -657,6 +647,7 @@ msgstr "Active"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__active_limit model:ir.model.fields,field_description:base_accounting_kit.field_res_users__active_limit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_sale_order__active_limit
 msgid "Active Credit Limit"
 msgstr "Limite de crédit active"
 
@@ -740,11 +731,6 @@ msgid "All accounts'"
 msgstr "Tous les comptes"
 
 #. module: base_accounting_kit
-#: model:ir.model.fields,help:base_accounting_kit.field_res_partner__real_due_amount model:ir.model.fields,help:base_accounting_kit.field_res_users__real_due_amount
-msgid "All due including confirmed SO"
-msgstr "Tout ce qui est dû, y compris les bons en cours"
-
-#. module: base_accounting_kit
 #. openerp-web
 #: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
 #, python-format
@@ -789,6 +775,21 @@ msgstr "Compte analytique"
 #, python-format
 msgid "Analytic Tags."
 msgstr "Balises analytiques."
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.sale_confirm_form
+msgid "Annuler"
+msgstr "Annuler"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.sale_confirm_form
+msgid "Ask For Approval"
+msgstr "Demander la Confirmation"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.header_view
+msgid "Ask for Approval"
+msgstr "Demander la Confirmation"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_depreciation_line__asset_id
@@ -1020,11 +1021,25 @@ msgid "Blocking Amount"
 msgstr "Montant de blocage"
 
 #. module: base_accounting_kit
-#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_import_journal_creation__body_text_position
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_journal__body_text_position
 #: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__body_text_position
 msgid "Body Text Position"
 msgstr "Position du corps du texte"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,help:base_accounting_kit.field_res_partner__real_due_amount model:ir.model.fields,help:base_accounting_kit.field_res_users__real_due_amount
+msgid "Bon Confirmés + Factures Confirmées + Factures Brouillons - Avances non attribuées"
+msgstr "Bon Confirmés + Factures Confirmées + Factures Brouillons - Avances non attribuées"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_partner_tree_inherited
+msgid "Bons Confirmés"
+msgstr "Bons Confirmés"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,help:base_accounting_kit.field_res_partner__confirmed_so model:ir.model.fields,help:base_accounting_kit.field_res_users__confirmed_so
+msgid "Bons de Commandes Confirmés"
+msgstr "Bons de Commandes Confirmés"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_journal__body_text_position__bl
@@ -1275,9 +1290,19 @@ msgid "Configure Copy layout"
 msgstr "Configurer la mise en page de la copie"
 
 #. module: base_accounting_kit
-#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_asset_form
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.sale_confirm_form model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_asset_form
 msgid "Confirm"
 msgstr "Confirmer"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.sale_confirm_form
+msgid "Confirm Order"
+msgstr "Confirmer la commande"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__confirmed_invoice model:ir.model.fields,field_description:base_accounting_kit.field_res_users__confirmed_invoice
+msgid "Confirmed Due Invoice"
+msgstr "Factures dues confirmées"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__confirmed_so model:ir.model.fields,field_description:base_accounting_kit.field_res_users__confirmed_so
@@ -1346,6 +1371,7 @@ msgstr "Mouvements de revenus crées"
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__create_uid
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard__create_uid
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__create_uid model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__create_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_credit_ask_approval_wizard__create_uid
 #: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__create_uid model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__create_uid
 #: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__create_uid model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__create_uid
 #: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__create_uid
@@ -1372,6 +1398,7 @@ msgstr "Créé par"
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__create_date
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard__create_date
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__create_date model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__create_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_credit_ask_approval_wizard__create_date
 #: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__create_date model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__create_date
 #: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__create_date model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__create_date
 #: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__create_date
@@ -1392,9 +1419,19 @@ msgid "Credit Account"
 msgstr "Compte de crédit"
 
 #. module: base_accounting_kit
+#: model:ir.model,name:base_accounting_kit.model_credit_ask_approval_wizard
+msgid "Credit Ask Approval Wizard"
+msgstr "Demande d'Autorisation"
+
+#. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_customer_form
 msgid "Credit Limit"
 msgstr "Limite de crédit"
+
+#. module: base_accounting_kit
+#: model:ir.actions.act_window,name:base_accounting_kit.sale_confirm_action
+msgid "Credit Limit Approve Order"
+msgstr "Approbateur Hors Plafond Crédit"
 
 #. module: base_accounting_kit
 #: model:res.groups,name:base_accounting_kit.group_account_credit_limit_approver
@@ -1705,6 +1742,7 @@ msgstr "Afficher les colonnes de débit/crédit"
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_asset_report__display_name
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard__display_name
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__display_name model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__display_name
+#: model:ir.model.fields,field_description:base_accounting_kit.field_credit_ask_approval_wizard__display_name
 #: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__display_name model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__display_name
 #: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__display_name
 #: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__display_name
@@ -1728,7 +1766,6 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: base_accounting_kit
-#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_import_journal_creation__multiple_invoice_type
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_journal__multiple_invoice_type
 #: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__multiple_invoice_type
 msgid "Display Type"
@@ -1786,11 +1823,6 @@ msgid "Draft Invoice"
 msgstr "Facture Brouillon"
 
 #. module: base_accounting_kit
-#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_partner_tree_inherited
-msgid "Due Amount"
-msgstr "Dû Exhaustif"
-
-#. module: base_accounting_kit
 #. openerp-web
 #: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
 #, python-format
@@ -1801,11 +1833,6 @@ msgstr "Date d'échéance"
 #: model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__delay
 msgid "Due Days"
 msgstr "Jours dûs"
-
-#. module: base_accounting_kit
-#: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__confirmed_invoice model:ir.model.fields,field_description:base_accounting_kit.field_res_users__confirmed_invoice
-msgid "Due Invoice"
-msgstr "Total  Facturé"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_payment__effective_date
@@ -1886,6 +1913,29 @@ msgstr "Filtres étendus..."
 #, python-format
 msgid "External link"
 msgstr "Lien Externe"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,help:base_accounting_kit.field_res_partner__draft_invoice model:ir.model.fields,help:base_accounting_kit.field_res_users__draft_invoice
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_partner_tree_inherited
+msgid "Factures Brouillons"
+msgstr "Factures Brouillons"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_partner_tree_inherited
+msgid "Factures Confirmées"
+msgstr "Factures Confirmées"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,help:base_accounting_kit.field_account_bank_statement_line__due_amount model:ir.model.fields,help:base_accounting_kit.field_account_move__due_amount
+#: model:ir.model.fields,help:base_accounting_kit.field_account_payment__due_amount model:ir.model.fields,help:base_accounting_kit.field_res_partner__due_amount
+#: model:ir.model.fields,help:base_accounting_kit.field_res_users__due_amount model:ir.model.fields,help:base_accounting_kit.field_sale_order__due_amount
+msgid "Factures Confirmées + Bon Confirmés + Factures Brouillon - Paiements Avances  (Attribuées et Non Attribuées)"
+msgstr "Factures Confirmées + Bon Confirmés + Factures Brouillon - Paiements Avances  (Attribuées et Non Attribuées)"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields,help:base_accounting_kit.field_res_partner__confirmed_invoice model:ir.model.fields,help:base_accounting_kit.field_res_users__confirmed_invoice
+msgid "Factures Confirmées Payées et Non Payées"
+msgstr "Factures Confirmées Payées et Non Payées"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__filter_cmp
@@ -2085,9 +2135,8 @@ msgstr "Donne l'ordre de séquence lors de l'affichage d'une liste de lignes de 
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__real_due_amount model:ir.model.fields,field_description:base_accounting_kit.field_res_users__real_due_amount
-#, fuzzy
 msgid "Global Due"
-msgstr "Global Due"
+msgstr "Global du"
 
 #. module: base_accounting_kit
 #. openerp-web
@@ -2171,10 +2220,10 @@ msgstr "Horizontal"
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_general_ledger__id
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__id model:ir.model.fields,field_description:base_accounting_kit.field_asset_asset_report__id
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard__id model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__id
-#: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__id model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__id
-#: model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__id model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__id
-#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__id model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__id
-#: model:ir.model.fields,field_description:base_accounting_kit.field_product_template__id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__id model:ir.model.fields,field_description:base_accounting_kit.field_credit_ask_approval_wizard__id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__id model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__id model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__id
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__id model:ir.model.fields,field_description:base_accounting_kit.field_product_template__id
 #: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_day_book_report_template__id
 #: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_agedpartnerbalance__id
 #: model:ir.model.fields,field_description:base_accounting_kit.field_report_base_accounting_kit_report_bank_book__id
@@ -2424,7 +2473,6 @@ msgid "Journals Audit"
 msgstr "Audit de journaux"
 
 #. module: base_accounting_kit
-#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_import_journal_creation__layout
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_journal__layout model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__layout
 msgid "Key"
 msgstr "Clé"
@@ -2465,6 +2513,7 @@ msgstr "Libellé"
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_asset_report____last_update
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard____last_update
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify____last_update model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report____last_update
+#: model:ir.model.fields,field_description:base_accounting_kit.field_credit_ask_approval_wizard____last_update
 #: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report____last_update model:ir.model.fields,field_description:base_accounting_kit.field_followup_line____last_update
 #: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report____last_update
 #: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice____last_update
@@ -2519,9 +2568,9 @@ msgstr "Dernière réconciliation :"
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__write_uid
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard__write_uid
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__write_uid model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__write_uid
-#: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__write_uid model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__write_uid
-#: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__write_uid model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__write_uid
-#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_credit_ask_approval_wizard__write_uid model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__write_uid model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__write_uid
+#: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__write_uid model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__write_uid
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
@@ -2544,6 +2593,7 @@ msgstr "Dernière mise à jour par"
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_report_partner_ledger__write_date
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_depreciation_confirmation_wizard__write_date
 #: model:ir.model.fields,field_description:base_accounting_kit.field_asset_modify__write_date model:ir.model.fields,field_description:base_accounting_kit.field_cash_flow_report__write_date
+#: model:ir.model.fields,field_description:base_accounting_kit.field_credit_ask_approval_wizard__write_date
 #: model:ir.model.fields,field_description:base_accounting_kit.field_financial_report__write_date model:ir.model.fields,field_description:base_accounting_kit.field_followup_line__write_date
 #: model:ir.model.fields,field_description:base_accounting_kit.field_kit_account_tax_report__write_date model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice__write_date
 #: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__write_date
@@ -2646,11 +2696,21 @@ msgid "Manual Operations"
 msgstr "Opérations manuelles"
 
 #. module: base_accounting_kit
+#: model:ir.actions.server,name:base_accounting_kit.action_mass_overdue_confirm
+msgid "Mass Overdue Confirm"
+msgstr "Confirmer les hors plafond en lot"
+
+#. module: base_accounting_kit
 #. openerp-web
 #: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
 #, python-format
 msgid "Match with entries that are not from receivable/payable accounts"
 msgstr "Correspondre à des entrées qui ne proviennent pas de comptes débiteurs ou créditeurs"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.sale_confirm_form
+msgid "Merci de faire attention, ce client a dépassé le plafond, demandez l'autorisation."
+msgstr ""
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__message_has_error
@@ -2694,9 +2754,8 @@ msgstr "Modifier les modèles"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.customer_statements_form_view
-#, fuzzy
 msgid "Module !"
-msgstr "Module !"
+msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_search
@@ -2721,7 +2780,6 @@ msgid "Move"
 msgstr "Mouvement"
 
 #. module: base_accounting_kit
-#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_import_journal_creation__multiple_invoice_ids
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_journal__multiple_invoice_ids
 msgid "Multiple Invoice"
 msgstr "Facture Multiple"
@@ -2738,8 +2796,8 @@ msgstr "Mise en page de plusieurs Factures"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_entries_line__template_name
-#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments__name model_terms:ir.ui.view,arch_db:base_accounting_kit.report_financial
-#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_journal_audit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments__name model:ir.model.fields,field_description:base_accounting_kit.field_credit_ask_approval_wizard__name
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_financial model_terms:ir.ui.view,arch_db:base_accounting_kit.report_journal_audit
 msgid "Name"
 msgstr "Nom"
 
@@ -2918,6 +2976,11 @@ msgid "Other Info"
 msgstr "Autre info"
 
 #. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_inherit_sale_order_filter_approval
+msgid "Over Limit"
+msgstr "Hors Plafond"
+
+#. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__over_payment model:ir.model.fields,field_description:base_accounting_kit.field_res_users__over_payment
 msgid "Over Payment"
 msgstr "Sur le paiement"
@@ -2961,6 +3024,11 @@ msgstr "Payé"
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
 msgid "Paid on"
 msgstr "Payé le"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_partner_tree_inherited
+msgid "Paiements"
+msgstr "Paiements"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_financial_report__parent_id
@@ -3088,6 +3156,12 @@ msgstr "Durée de la période (jours)"
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_account_asset_category_form
 msgid "Periodicity"
 msgstr "Périodicité"
+
+#. module: base_accounting_kit
+#: code:addons/base_accounting_kit/models/credit_limit.py:0
+#, python-format
+msgid "Please select only qutoations on approval state, or if you are not allowed, you can contact the manager ! "
+msgstr "Merci de sélectionner les devis hors plafond seulement, ou bien vous n'êtes pas autorisé !"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_multiple_invoice_new
@@ -3451,7 +3525,7 @@ msgstr "Définir sur brouillon"
 #: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
 #, python-format
 msgid "Settings"
-msgstr "Paramètres"
+msgstr "Configuration"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_financial_report__sign
@@ -3476,6 +3550,11 @@ msgstr "Sauter"
 #: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_financial_report__style_overwrite__6
 msgid "Smallest Text"
 msgstr "Le plus petit texte"
+
+#. module: base_accounting_kit
+#: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_partner_tree_inherited
+msgid "Solde / Montant Dû"
+msgstr "Solde / Montant Dû"
 
 #. module: base_accounting_kit
 #. openerp-web
@@ -3523,7 +3602,7 @@ msgstr "État de l'actif"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_asset_asset__state model:ir.model.fields,field_description:base_accounting_kit.field_account_recurring_payments__state
-#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_asset_report__state
+#: model:ir.model.fields,field_description:base_accounting_kit.field_asset_asset_report__state model:ir.model.fields,field_description:base_accounting_kit.field_sale_order__state
 msgid "Status"
 msgstr "Statut"
 
@@ -3623,14 +3702,12 @@ msgid "Text"
 msgstr "Texte"
 
 #. module: base_accounting_kit
-#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_import_journal_creation__text_align
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_journal__text_align model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__text_align
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.view_multiple_invoice_layout
 msgid "Text Align"
 msgstr "Alignement du texte"
 
 #. module: base_accounting_kit
-#: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_import_journal_creation__text_position
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_journal__text_position
 #: model:ir.model.fields,field_description:base_accounting_kit.field_multiple_invoice_layout__text_position
 msgid "Text Position"
@@ -3711,7 +3788,7 @@ msgstr "Cette année"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.account_move_form_inherited
-msgid "This customer's <strong>warning limit</strong> has been crossed."
+msgid "This customer's <strong>warning limit</strong> has been crossed. &gt; Total ="
 msgstr "Ce client <strong>limite d'avertissement</strong> a été traversé."
 
 #. module: base_accounting_kit
@@ -3853,6 +3930,12 @@ msgid "Total Overdue"
 msgstr "Total en retard"
 
 #. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__payments model:ir.model.fields,field_description:base_accounting_kit.field_res_users__payments
+#: model:ir.model.fields,help:base_accounting_kit.field_res_partner__payments model:ir.model.fields,help:base_accounting_kit.field_res_users__payments
+msgid "Total Payments"
+msgstr "Total Paiements"
+
+#. module: base_accounting_kit
 #. openerp-web
 #: code:addons/base_accounting_kit/static/src/xml/payment_matching.xml:0
 #, python-format
@@ -3961,6 +4044,11 @@ msgstr "Vertical"
 #: model:ir.model.fields.selection,name:base_accounting_kit.selection__account_financial_report__type__sum
 msgid "View"
 msgstr "Vue"
+
+#. module: base_accounting_kit
+#: model:ir.model.fields.selection,name:base_accounting_kit.selection__sale_order__state__waiting_overdue_confirmation
+msgid "Waiting Overdue Confirmation"
+msgstr "En Approbation"
 
 #. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_res_partner__warning_stage model:ir.model.fields,field_description:base_accounting_kit.field_res_users__warning_stage

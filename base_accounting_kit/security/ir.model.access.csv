@@ -41,3 +41,4 @@ access_account_recurring_entries_line,access.account.recurring.entries.line,mode
 
 access_multiple_invoice,multiple_invoice,model_multiple_invoice,account.group_account_manager,1,1,1,1
 access_multiple_invoice_layout,multiple_invoice_layout,model_multiple_invoice_layout,account.group_account_manager,1,1,1,1
+access_credit_ask_approval_wizard,credit_ask_approval_wizard,model_credit_ask_approval_wizard,,1,1,1,1
