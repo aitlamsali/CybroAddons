@@ -188,6 +188,8 @@ class SaleOrder(models.Model):
     active_limit = fields.Boolean(related='partner_id.active_limit')
     authorized_balance = fields.Float(related='partner_id.authorized_balance')
 
+    is_overdue = fields.Boolean(string="Is Overdue", ) #compute="_compute_is_overdue")
+
     # Disable block user on confirm and post invoice
     def action_confirm(self):
         print("?elf.partner_id.active_limit", self.partner_id.active_limit, self.partner_id.enable_credit_limit)
@@ -240,6 +242,14 @@ class SaleOrder(models.Model):
             for rec in self :
                 rec.action_confirm()
 
+    def _mass_non_overdue_confirm(self):
+        """To check the selected customers due amount is exceed than
+        blocking stage"""
+        for rec in self:
+            if not rec.is_overdue :
+                rec.action_confirm()
+
+
     state = fields.Selection(
         selection_add=[('waiting_overdue_confirmation', 'Waiting Overdue Confirmation'),
                        #('approved', 'Approved'),
@@ -268,10 +278,11 @@ class SaleOrder(models.Model):
     #                                 )
     #     return super(SaleOrder, self).create(vals)
 
-    @api.onchange('partner_id')
+    @api.onchange('partner_id','amount_total')
     def check_due(self):
         self.is_warning = False
         self.has_due = False
+        self.is_overdue = False
         """To show the due amount and warning stage"""
         if self.partner_id and self.partner_id.due_amount > 0 \
                 and self.partner_id.active_limit \
@@ -286,6 +297,13 @@ class SaleOrder(models.Model):
                     self.is_warning = True
         else:
             self.is_warning = False
+
+        ####################################"
+        if self.partner_id.enable_credit_limit and self.state == 'draft'\
+                and (self.due_amount + self.amount_total) > self.partner_id.blocking_stage: #self.partner_id.active_limit and
+            self.is_overdue = True
+        else:
+            self.is_overdue = False
 
 
 class AccountMove(models.Model):
