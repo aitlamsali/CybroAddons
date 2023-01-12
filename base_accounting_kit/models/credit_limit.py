@@ -193,7 +193,7 @@ class SaleOrder(models.Model):
         print("?elf.partner_id.active_limit", self.partner_id.active_limit, self.partner_id.enable_credit_limit)
         if self.partner_id.active_limit \
                 and self.partner_id.enable_credit_limit and not self._context.get('is_confirm'):
-            if not self.user_has_groups('sales_credit_limit.group_account_credit_limit_approver') and self.state == 'waiting_overdue_confirmation':
+            if not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver') and self.state == 'waiting_overdue_confirmation':
                 raise UserError(_(
                         "%s is on  Blocking Stage and "
                         "has only a due amount of %s %s to pay, his blocking stage %s") % (
@@ -203,13 +203,13 @@ class SaleOrder(models.Model):
             if not self._context.get('is_confirm') and self.due_amount + self.amount_total > self.partner_id.blocking_stage and self.state != 'waiting_overdue_confirmation':
                 #
                 if self.partner_id.blocking_stage != 0:
-                    action = self.env.ref('sales_credit_limit.sale_confirm_action').read()[0]
+                    action = self.env.ref('base_accounting_kit.sale_confirm_action').read()[0]
                     return action
         return super(SaleOrder, self).action_confirm()
 
 
     def ask_for_approval(self):
-        # action = self.env.ref('sales_credit_limit.sale_confirm_action').read()[0]
+        # action = self.env.ref('base_accounting_kit.sale_confirm_action').read()[0]
         # return action
         if self.partner_id.active_limit \
                 and self.partner_id.enable_credit_limit :
