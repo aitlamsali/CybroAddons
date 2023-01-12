@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-08 19:40+0000\n"
-"PO-Revision-Date: 2023-01-08 20:42+0100\n"
+"POT-Creation-Date: 2023-01-12 17:05+0000\n"
+"PO-Revision-Date: 2023-01-12 18:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -53,8 +53,8 @@ msgstr "%s est en phase de blocage et a un montant dû de %s %s à payer"
 #. module: base_accounting_kit
 #: code:addons/base_accounting_kit/models/credit_limit.py:0
 #, python-format
-msgid "%s is not on  Blocking Stage and has only a due amount of %s %s to pay, his blocking stage %s"
-msgstr "%s n'est pas en phase de blocage, en cours est de /%s %s à payer, la limite est a %s"
+msgid "%s is on  Blocking Stage and has only a due amount of %s %s to pay, his blocking stage %s"
+msgstr "%s est en phase de blocage et il a un montant dû de %s %s à payer, ça limite est : %s"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.header_view
@@ -135,13 +135,25 @@ msgstr ""
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.header_view
-msgid "<span attrs=\"{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}\">Customer's <strong>warning limit</strong> has been crossed !.</span>"
+msgid ""
+"<span attrs=\"{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}\">\n"
+"                            Customer's <strong>warning limit</strong> has been crossed !.\n"
+"                        </span>"
 msgstr ""
+"<span attrs=\"{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}\">\n"
+"                            Client <strong>notification limite </strong> atteinte !.\n"
+"                        </span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.header_view
-msgid "<span attrs=\"{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}\">Customer's <strong>warning limit</strong> has been crossed.</span>"
+msgid ""
+"<span attrs=\"{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}\">\n"
+"                            Customer's <strong>warning limit</strong> has been crossed.\n"
+"                        </span>"
 msgstr ""
+"<span attrs=\"{'invisible':['|',('is_warning','=',False),('is_in_account_customer','=',False)]}\">\n"
+"                            Client<strong>notification limite</strong> atteinte.\n"
+"                        </span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
@@ -250,7 +262,7 @@ msgstr ""
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.report_agedpartnerbalance
 msgid "<span>Not due</span>"
-msgstr "<span>Pas due</span>"
+msgstr "<span>Non due</span>"
 
 #. module: base_accounting_kit
 #: model_terms:ir.ui.view,arch_db:base_accounting_kit.multiple_invoice_wizard_preview
@@ -2344,6 +2356,11 @@ msgid "Is Follower"
 msgstr "Est un abonné"
 
 #. module: base_accounting_kit
+#: model:ir.model.fields,field_description:base_accounting_kit.field_sale_order__is_overdue
+msgid "Is Overdue"
+msgstr "Hors limite"
+
+#. module: base_accounting_kit
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_bank_statement_line__is_warning model:ir.model.fields,field_description:base_accounting_kit.field_account_move__is_warning
 #: model:ir.model.fields,field_description:base_accounting_kit.field_account_payment__is_warning model:ir.model.fields,field_description:base_accounting_kit.field_sale_order__is_warning
 msgid "Is Warning"
@@ -2694,6 +2711,11 @@ msgstr "Titre principal 1 (gras, souligné)"
 #, python-format
 msgid "Manual Operations"
 msgstr "Opérations manuelles"
+
+#. module: base_accounting_kit
+#: model:ir.actions.server,name:base_accounting_kit.action_mass_non_overdue_confirm
+msgid "Mass Non Overdue Confirm"
+msgstr "Confirmation en lot des devis"
 
 #. module: base_accounting_kit
 #: model:ir.actions.server,name:base_accounting_kit.action_mass_overdue_confirm
