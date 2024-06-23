@@ -192,7 +192,7 @@ class SaleOrder(models.Model):
 
     # Disable block user on confirm and post invoice
     def action_confirm(self):
-        print("?elf.partner_id.active_limit", self.partner_id.active_limit, self.partner_id.enable_credit_limit)
+        #print("?elf.partner_id.active_limit", self.partner_id.active_limit, self.partner_id.enable_credit_limit)
         if self.partner_id.active_limit \
                 and self.partner_id.enable_credit_limit and not self._context.get('is_confirm'):
             if not self.user_has_groups('base_accounting_kit.group_account_credit_limit_approver') and self.state == 'waiting_overdue_confirmation':
@@ -205,29 +205,53 @@ class SaleOrder(models.Model):
             if not self._context.get('is_confirm') and self.due_amount + self.amount_total > self.partner_id.blocking_stage and self.state != 'waiting_overdue_confirmation':
                 #
                 if self.partner_id.blocking_stage != 0:
+                    #print("/fffffffffffffffffffffffffffffffffff",self.env.context)
                     action = self.env.ref('base_accounting_kit.sale_confirm_action').read()[0]
+                    action['context'] = {
+                        'adb_session_id' :self.env.context.get('default_adb_session_id')
+                    }
                     return action
         return super(SaleOrder, self).action_confirm()
 
 
+    # def ask_for_approval(self):
+    #     1/0
+    #     # action = self.env.ref('base_accounting_kit.sale_confirm_action').read()[0]
+    #     # return action
+    #     if self.partner_id.active_limit \
+    #             and self.partner_id.enable_credit_limit :
+    #         if (self.due_amount + self.amount_total) > self.partner_id.blocking_stage:
+    #             if self.partner_id.blocking_stage != 0:
+    #                 self.state = 'waiting_overdue_confirmation'
+    #                 return {
+    #                     'type': 'ir.actions.act_window',
+    #                     'view_mode': 'form',
+    #                     'res_model': 'adb.subshift.session',
+    #                     'target': 'new',
+    #                     'res_id': self.id
+    #                 }
+
+
     def ask_for_approval(self):
-        # action = self.env.ref('base_accounting_kit.sale_confirm_action').read()[0]
-        # return action
         if self.partner_id.active_limit \
                 and self.partner_id.enable_credit_limit :
-                # and self.is_in_account_customer
-            print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", self.due_amount, self.amount_total , self.partner_id.blocking_stage)
-            if (self.due_amount + self.amount_total) > self.partner_id.blocking_stage:
+            if self.due_amount + self.amount_total > self.partner_id.blocking_stage:
                 if self.partner_id.blocking_stage != 0:
-
                     self.state = 'waiting_overdue_confirmation'
-            # else :
-            #     raise UserError(_(
-            #         "%s is not on  Blocking Stage and "
-            #         "has only a due amount of %s %s to pay, his blocking stage %s") % (
-            #                         self.partner_id.name, self.due_amount,
-            #                         self.currency_id.symbol , self.partner_id.blocking_stage))
-
+                    if self.env.context.get('adb_session_id'):
+                        return {
+                            'type': 'ir.actions.act_window',
+                            'view_mode': 'form',
+                            'res_model': 'adb.subshift.session',
+                            'target': 'new',
+                            'res_id': self.adb_session_id.id
+                        }
+            else :
+                raise UserError(_(
+                    "%s is not on  Blocking Stage and "
+                    "has only a due amount of %s %s to pay, his blocking stage %s") % (
+                                    self.partner_id.name, self.due_amount,
+                                    self.currency_id.symbol , self.partner_id.blocking_stage))
 
     def _mass_overdue_confirm(self):
         """To check the selected customers due amount is exceed than

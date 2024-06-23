@@ -19,8 +19,8 @@ class CreditAskApprovalWizard(models.TransientModel):
         self.ensure_one()
         order_id = self.env['sale.order'].browse(self._context.get('active_id'))
         # confirm sale order
-        order_id.with_context(is_confirm=True).ask_for_approval()
-        return True
+        return order_id.with_context(is_confirm=True).ask_for_approval()
+        #return True
     def action_confirm(self):
         self.ensure_one()
         order_id = self.env['sale.order'].browse(self._context.get('active_ids'))
